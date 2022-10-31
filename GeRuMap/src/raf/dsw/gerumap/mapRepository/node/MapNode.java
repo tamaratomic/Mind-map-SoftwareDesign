@@ -1,6 +1,8 @@
 package raf.dsw.gerumap.mapRepository.node;
 
-public abstract class MapNode {
+import raf.dsw.gerumap.observer.IPublisher;
+
+public abstract class MapNode implements IPublisher{
 
     private String name;
     private MapNode parent;

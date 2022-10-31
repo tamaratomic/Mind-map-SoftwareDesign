@@ -2,11 +2,12 @@ package raf.dsw.gerumap.gui.swing.view;
 
 import raf.dsw.gerumap.core.MapRepository;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
+import raf.dsw.gerumap.observer.ISubscriber;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements ISubscriber {
 
     private static MainFrame instance;
 
@@ -100,6 +101,11 @@ public class MainFrame extends JFrame {
 
     public void setActionManager(ActionManager actionManager) {
         this.actionManager = actionManager;
+    }
+
+    @Override
+    public void update(Object notif) {
+
     }
 }
 
