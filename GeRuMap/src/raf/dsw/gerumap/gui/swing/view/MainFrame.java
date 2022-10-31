@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import raf.dsw.gerumap.core.MapRepository;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
 
 import javax.swing.*;
@@ -12,6 +13,8 @@ public class MainFrame extends JFrame {
     private JMenuBar menu;
 
     private JToolBar toolBar;
+
+    private MapRepository mapRepository;
 
     private ActionManager actionManager;
 
@@ -69,6 +72,34 @@ public class MainFrame extends JFrame {
 
     public ActionManager getActionManager() {
         return actionManager;
+    }
+
+    public MapRepository getMapRepository() {
+        return mapRepository;
+    }
+
+    public void setMapRepository(MapRepository mapRepository) {
+        this.mapRepository = mapRepository;
+    }
+
+    public JMenuBar getMenu() {
+        return menu;
+    }
+
+    public void setMenu(JMenuBar menu) {
+        this.menu = menu;
+    }
+
+    public JToolBar getToolBar() {
+        return toolBar;
+    }
+
+    public void setToolBar(JToolBar toolBar) {
+        this.toolBar = toolBar;
+    }
+
+    public void setActionManager(ActionManager actionManager) {
+        this.actionManager = actionManager;
     }
 }
 
