@@ -9,7 +9,7 @@ public class NewProjectAction extends AbstractGerumapAction{
     public NewProjectAction() {
 
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images/newProjectIcon.png"));
+        putValue(SMALL_ICON, loadIcon("/images/newProjectIcon.png"));
         putValue(NAME, "NewProject");
         putValue(SHORT_DESCRIPTION, "NewProject");
 

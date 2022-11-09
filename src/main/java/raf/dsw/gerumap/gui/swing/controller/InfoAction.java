@@ -11,7 +11,7 @@ public class InfoAction extends AbstractGerumapAction{
     public InfoAction() {
 
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
-        putValue(SMALL_ICON, loadIcon("images/infoIcon.png"));
+        putValue(SMALL_ICON, loadIcon("/images/infoIcon.png"));
         putValue(NAME, "Info");
         putValue(SHORT_DESCRIPTION, "Info");
 

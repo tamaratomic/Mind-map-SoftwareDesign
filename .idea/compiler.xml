@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="gerumap-tim_ignjatkrdzavac_tamaratomic" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gerumap-tim_ignjatkrdzavac_tamaratomic" target="11" />
+    </bytecodeTargetLevel>
+  </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="gerumap-tim_ignjatkrdzavac_tamaratomic" options="--add-modules java.desktop" />
+      <module name="gerumap-tim_ignjatkrdzavac_tamaratomic" options="" />
     </option>
   </component>
 </project>
