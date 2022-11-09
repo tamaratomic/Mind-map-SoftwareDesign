@@ -21,7 +21,10 @@ public class Project extends MapNodeComposite {
 
     @Override
     public void addChild(MapNode child) {
-
+        MindMap mindMap = (MindMap) child;
+        if(!this.getChildren().contains(mindMap)){
+            this.getChildren().add(mindMap);
+        }
     }
 
     @Override
@@ -29,15 +32,6 @@ public class Project extends MapNodeComposite {
 
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getAuthor() {
         return author;

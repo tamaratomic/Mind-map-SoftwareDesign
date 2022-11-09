@@ -1,7 +1,9 @@
 package raf.dsw.gerumap.mapRepository.node;
 
+import lombok.Getter;
 import raf.dsw.gerumap.observer.IPublisher;
 
+@Getter
 public abstract class MapNode implements IPublisher{
 
     private String name;

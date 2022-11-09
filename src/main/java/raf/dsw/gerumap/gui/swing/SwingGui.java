@@ -19,8 +19,11 @@ public class SwingGui implements Gui {
     @Override
     public void start() {
 
+        System.out.println("pre instance");
         instance = MainFrame.getInstance();
+        System.out.println("uzeta instanca");
         instance.setMapRepository(mapRepository);
+        System.out.println("postavljen maprepo");
         instance.setVisible(true);
     }
 }
