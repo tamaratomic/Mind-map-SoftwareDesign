@@ -75,6 +75,8 @@ public class MainFrame extends JFrame implements ISubscriber {
         return actionManager;
     }
 
+
+
     public MapRepository getMapRepository() {
         return mapRepository;
     }
