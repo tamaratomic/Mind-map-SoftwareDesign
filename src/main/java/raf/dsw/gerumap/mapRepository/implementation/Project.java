@@ -28,8 +28,10 @@ public class Project extends MapNodeComposite {
     }
 
     @Override
-    public void removeChild(int index) {
-
+    public void removeChild(MapNode child) {
+        if(child instanceof MindMap && this.getChildren().contains(child)){
+            this.getChildren().remove(child);
+        }
     }
 
 

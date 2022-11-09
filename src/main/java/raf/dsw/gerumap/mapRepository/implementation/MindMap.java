@@ -26,7 +26,12 @@ public class MindMap extends MapNodeComposite {
     }
 
     @Override
-    public void removeChild(int index) {
+    public void removeChild(MapNode child) {
+
+        if(child instanceof Element && this.getChildren().contains(child)){
+            this.getChildren().remove(child);
+        }
+
 
     }
 
