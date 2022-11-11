@@ -12,6 +12,8 @@ public class ActionManager {
     private NewProjectAction newProjectAction;
     private InfoAction infoAction;
     private DeleteAction deleteAction;
+    private RenameAction renameAction;
+    private AuthorAction authorAction;
 
 
     public ActionManager() {
@@ -23,31 +25,10 @@ public class ActionManager {
         newProjectAction = new NewProjectAction();
         infoAction = new InfoAction();
         deleteAction = new DeleteAction();
+        renameAction = new RenameAction();
+        authorAction = new AuthorAction();
 
     }
 
-//
-//    public ExitAction getExitAction() {
-//        return exitAction;
-//    }
-//
-//    public void setExitAction(ExitAction exitAction) {
-//        this.exitAction = exitAction;
-//    }
-//
-//    public NewProjectAction getNewProjectAction() {
-//        return newProjectAction;
-//    }
-//
-//    public void setNewProjectAction(NewProjectAction newProjectAction) {
-//        this.newProjectAction = newProjectAction;
-//    }
-//
-//    public InfoAction getInfoAction() {
-//        return infoAction;
-//    }
-//
-//    public void setInfoAction(InfoAction infoAction) {
-//        this.infoAction = infoAction;
-//    }
+
 }

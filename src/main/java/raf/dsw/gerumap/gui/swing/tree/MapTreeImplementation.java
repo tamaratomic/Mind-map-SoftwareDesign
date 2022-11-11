@@ -12,7 +12,6 @@ import raf.dsw.gerumap.mapRepository.node.MapNodeComposite;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
-import java.util.Random;
 
 public class MapTreeImplementation implements MapTree{
 
@@ -60,6 +59,11 @@ public class MapTreeImplementation implements MapTree{
         SwingUtilities.updateComponentTreeUI(treeView);
 
 
+
+    }
+
+    @Override
+    public void renameNode(MapTreeItem selectedItem) {
 
     }
 
