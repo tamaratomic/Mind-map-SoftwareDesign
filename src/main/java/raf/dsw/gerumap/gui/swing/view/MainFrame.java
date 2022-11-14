@@ -3,11 +3,11 @@ package raf.dsw.gerumap.gui.swing.view;
 import lombok.Getter;
 import lombok.Setter;
 import raf.dsw.gerumap.AppCore;
-import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.core.MapRepository;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.MapTreeImplementation;
+import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.observer.ISubscriber;
 
 import javax.swing.*;
@@ -28,6 +28,8 @@ public class MainFrame extends JFrame implements ISubscriber {
     private ActionManager actionManager;
 
     private MapTree mapTree;
+
+    private JPanel desktop;
 
 
 
@@ -62,7 +64,7 @@ public class MainFrame extends JFrame implements ISubscriber {
         toolBar = new Toolbar();
         add(toolBar,BorderLayout.NORTH);
 
-        JPanel desktop = new JPanel();
+        desktop = new JPanel();
 
 
 
@@ -89,6 +91,15 @@ public class MainFrame extends JFrame implements ISubscriber {
         return instance;
     }
 
+    public void setDesktop(MapTreeItem item) {
+        this.desktop.removeAll();
+        int high = desktop.getHeight();
+        int width = desktop.getWidth();
+         this.desktop.add(new ProjectPanel(item, high, width));
+        System.out.println("pozvam ui");
+        this.desktop.updateUI();
+        System.out.println("pozvan ui");
+    }
 
     public ActionManager getActionManager() {
         return actionManager;

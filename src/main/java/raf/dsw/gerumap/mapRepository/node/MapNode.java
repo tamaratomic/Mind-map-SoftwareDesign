@@ -9,6 +9,10 @@ public abstract class MapNode implements IPublisher{
     private String name;
     private MapNode parent;
 
+    public MapNode(){
+
+    }
+
     public MapNode(String name, MapNode parent) {
         this.name = name;
         this.parent = parent;

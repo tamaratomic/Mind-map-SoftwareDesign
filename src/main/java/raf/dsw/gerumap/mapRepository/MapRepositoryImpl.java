@@ -22,10 +22,6 @@ public class MapRepositoryImpl implements MapRepository {
 
 
 
-    public void setRoot(ProjectExplorer root) {
-        this.root = root;
-    }
-
     @Override
     public ProjectExplorer getProjectExplorer() {
         return root;

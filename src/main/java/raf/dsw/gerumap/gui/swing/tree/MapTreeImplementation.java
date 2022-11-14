@@ -3,6 +3,8 @@ package raf.dsw.gerumap.gui.swing.tree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.mapRepository.factory.NodeFactory;
+import raf.dsw.gerumap.mapRepository.factory.ProjectFactory;
 import raf.dsw.gerumap.mapRepository.implementation.Element;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
@@ -71,6 +73,7 @@ public class MapTreeImplementation implements MapTree{
     private MapNode createChild(MapNode parent) {
         System.out.println("create chikld");
         if (parent instanceof ProjectExplorer) {
+           // return ProjectFactory
             return new Project("Project " + (((ProjectExplorer) parent).getChildren().stream().count()+1), parent);
         }else {
             if(parent instanceof Project){
