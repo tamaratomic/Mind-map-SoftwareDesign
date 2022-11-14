@@ -17,6 +17,7 @@ public class AppCore extends ApplicationFramework{
 
     @Override
     public void run() {
+        System.out.println("u ranu");
         this.gui.start();
     }
 
@@ -30,9 +31,13 @@ public class AppCore extends ApplicationFramework{
 
     public static void main(String[] args) {
         MapRepository mapRepository = new MapRepositoryImpl();
+        System.out.println("test1");
         Gui gui= new SwingGui(mapRepository);
+        System.out.println("test2");
         ApplicationFramework appCore= AppCore.getInstance();
+        System.out.println("test3");
         appCore.initialise(gui,mapRepository);
+        System.out.println("test4");
         appCore.run();
     }
 }

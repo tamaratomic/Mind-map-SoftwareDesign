@@ -11,33 +11,34 @@ public class Project extends MapNodeComposite {
 
     private String name;
     private String author;
-    private String path;
+   // private String path;
 
     List<ISubscriber> subscribers;
 
+
+    public Project(){
+
+    }
+
     public Project(String name, MapNode parent) {
-        super(name, parent);
+       super(name, parent);
     }
 
     @Override
     public void addChild(MapNode child) {
-
+        MindMap mindMap = (MindMap) child;
+        if(!this.getChildren().contains(mindMap)){
+            this.getChildren().add(mindMap);
+        }
     }
 
     @Override
-    public void removeChild(int index) {
-
+    public void removeChild(MapNode child) {
+        if(child instanceof MindMap && this.getChildren().contains(child)){
+            this.getChildren().remove(child);
+        }
     }
 
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getAuthor() {
         return author;
@@ -47,13 +48,6 @@ public class Project extends MapNodeComposite {
         this.author = author;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
 
     @Override
     public void addSubs(ISubscriber sub) {

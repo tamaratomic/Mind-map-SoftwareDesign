@@ -1,12 +1,20 @@
 package raf.dsw.gerumap.gui.swing.view;
 
+import lombok.Getter;
+import lombok.Setter;
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.core.MapRepository;
 import raf.dsw.gerumap.gui.swing.controller.ActionManager;
+import raf.dsw.gerumap.gui.swing.tree.MapTree;
+import raf.dsw.gerumap.gui.swing.tree.MapTreeImplementation;
+import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.observer.ISubscriber;
 
 import javax.swing.*;
 import java.awt.*;
 
+@Setter
+@Getter
 public class MainFrame extends JFrame implements ISubscriber {
 
     private static MainFrame instance;
@@ -19,17 +27,27 @@ public class MainFrame extends JFrame implements ISubscriber {
 
     private ActionManager actionManager;
 
+    private MapTree mapTree;
+
+    private JPanel desktop;
+
+
+
     private MainFrame() {
 
     }
 
     private void initialise() {
+        System.out.println("initialise");
         actionManager = new ActionManager();
+        mapTree = new MapTreeImplementation();
         initialiseGUI();
 
     }
 
     private void initialiseGUI() {
+
+        System.out.println("initialise gui");
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -46,13 +64,16 @@ public class MainFrame extends JFrame implements ISubscriber {
         toolBar = new Toolbar();
         add(toolBar,BorderLayout.NORTH);
 
-        JPanel desktop = new JPanel();
+        desktop = new JPanel();
 
-        JScrollPane scroll = new JScrollPane();
+
+
+        System.out.println(AppCore.getInstance().getMapRepository().getProjectExplorer().getName());
+        JTree projectExplorer = mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
+
+
+        JScrollPane scroll = new JScrollPane(projectExplorer);
         scroll.setMinimumSize(new Dimension(200,150));
-
-
-
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scroll,desktop);
         getContentPane().add(split,BorderLayout.CENTER);
         split.setDividerLocation(250);
@@ -70,6 +91,15 @@ public class MainFrame extends JFrame implements ISubscriber {
         return instance;
     }
 
+    public void setDesktop(MapTreeItem item) {
+        this.desktop.removeAll();
+        int high = desktop.getHeight();
+        int width = desktop.getWidth();
+         this.desktop.add(new ProjectPanel(item, high, width));
+        System.out.println("pozvam ui");
+        this.desktop.updateUI();
+        System.out.println("pozvan ui");
+    }
 
     public ActionManager getActionManager() {
         return actionManager;

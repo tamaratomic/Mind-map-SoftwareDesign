@@ -18,11 +18,20 @@ public class ProjectExplorer extends MapNodeComposite {
     @Override
     public void addChild(MapNode child) {
 
+        if(child != null && child instanceof Project){
+            Project project = (Project) child;
+            if(!this.getChildren().contains(project)){
+                this.getChildren().add(project);
+            }
+        }
+
     }
 
     @Override
-    public void removeChild(int index) {
-
+    public void removeChild(MapNode child) {
+        if(child instanceof Project && this.getChildren().contains(child)){
+            this.getChildren().remove(child);
+        }
     }
 
     @Override
