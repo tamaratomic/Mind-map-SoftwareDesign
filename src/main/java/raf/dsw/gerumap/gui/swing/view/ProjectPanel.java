@@ -43,11 +43,11 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
 
 
-        if (item.getMapNode() instanceof Project && !((Project) item.getMapNode()).getChildren().isEmpty()){
+      //  if (item.getMapNode() instanceof Project && !((Project) item.getMapNode()).getChildren().isEmpty()){
             createTabbedPane();
             addTabToTabbedPane((MapNodeComposite)node);
             this.add(new JSplitPane(JSplitPane.VERTICAL_SPLIT, panel, tabbedPane));
-        }
+
 
         setVisible(true);
     }
@@ -69,11 +69,15 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
     @Override
     public void update(Object notif) {
+        System.out.println("NOTIFY   " + ((MapNode)notif).getParent().equals(mapTreeItem.getMapNode()));
         if(notif instanceof MindMap && ((MapNode)notif).getParent().equals(mapTreeItem.getMapNode())){
 
-            System.out.println("u apdejtu");
-            MainFrame.getInstance().setDesktop(mapTreeItem);
-          //  tabbedPane.addTab(((MindMap) notif).getName(), new JPanel());
+           if(tabbedPane.getTabCount() == ((MapNodeComposite)mapTreeItem.getMapNode()).getChildren().size()){
+
+               tabbedPane.remove(((MapNodeComposite) mapTreeItem.getMapNode()).getChildren().indexOf((MindMap) notif));
+           }else{
+               tabbedPane.addTab(((MindMap) notif).getName(), new JPanel());
+           }
 
 
         }
