@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.font.TextLayout;
 
-public class ProjectPanel extends JPanel {
+public class ProjectPanel extends JInternalFrame {
 
 
     private MapTreeItem mapTreeItem;
@@ -24,7 +24,7 @@ public class ProjectPanel extends JPanel {
 //        this.setLayout(layout);
 
         System.out.println("project panel");
-        setSize(width, high);
+        setPreferredSize(new Dimension(width,high));
 
         MapNode node = item.getMapNode();
 

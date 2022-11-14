@@ -95,7 +95,7 @@ public class MainFrame extends JFrame implements ISubscriber {
         this.desktop.removeAll();
         int high = desktop.getHeight();
         int width = desktop.getWidth();
-         this.desktop.add(new ProjectPanel(item, high, width));
+        this.desktop.add(new ProjectPanel(item, 800, 1030));
         System.out.println("pozvam ui");
         this.desktop.updateUI();
         System.out.println("pozvan ui");
