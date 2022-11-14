@@ -26,6 +26,7 @@ public class ProjectPanel extends JInternalFrame {
         System.out.println("project panel");
         setPreferredSize(new Dimension(width,high));
 
+
         MapNode node = item.getMapNode();
 
         JLabel name = new JLabel("Naziv: " + item.getMapNode().getName());
