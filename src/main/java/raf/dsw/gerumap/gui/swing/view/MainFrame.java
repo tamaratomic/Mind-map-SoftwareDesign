@@ -8,6 +8,7 @@ import raf.dsw.gerumap.gui.swing.controller.ActionManager;
 import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.MapTreeImplementation;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
+import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.observer.ISubscriber;
 
 import javax.swing.*;
@@ -95,7 +96,10 @@ public class MainFrame extends JFrame implements ISubscriber {
         this.desktop.removeAll();
         int high = desktop.getHeight();
         int width = desktop.getWidth();
-        this.desktop.add(new ProjectPanel(item, 800, 1030));
+        ProjectPanel panel = new ProjectPanel(item, high, width);
+        this.getMapTree().getSelectedNode().getMapNode().addSubs(panel);
+        this.desktop.add(panel);
+       // this.desktop.add(new ProjectPanel(item, 800, 1030));
         System.out.println("pozvam ui");
         this.desktop.updateUI();
         System.out.println("pozvan ui");

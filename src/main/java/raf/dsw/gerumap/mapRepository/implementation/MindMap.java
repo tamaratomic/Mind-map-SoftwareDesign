@@ -1,12 +1,15 @@
 package raf.dsw.gerumap.mapRepository.implementation;
 
+import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.gerumap.mapRepository.node.MapNode;
 import raf.dsw.gerumap.mapRepository.node.MapNodeComposite;
 import raf.dsw.gerumap.observer.ISubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Setter
+@Getter
 public class MindMap extends MapNodeComposite {
 
     private boolean isTemplate;
