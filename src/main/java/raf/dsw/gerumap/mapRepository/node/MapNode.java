@@ -8,8 +8,8 @@ import raf.dsw.gerumap.observer.IPublisher;
 @Setter
 public abstract class MapNode implements IPublisher{
 
-    private String name;
-    private MapNode parent;
+    protected String name;
+    protected MapNode parent;
 
     public MapNode(){
 

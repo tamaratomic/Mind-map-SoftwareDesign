@@ -8,6 +8,8 @@ import raf.dsw.gerumap.observer.ISubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 @Setter
 @Getter
 public class MindMap extends MapNodeComposite {
@@ -16,12 +18,17 @@ public class MindMap extends MapNodeComposite {
 
     List<ISubscriber> subscribers;
 
+    public  MindMap(){
+        this.name = "MindMap" + new Random().nextInt(100);
+    }
+
     public MindMap(String name, MapNode parent) {
         super(name, parent);
     }
 
     @Override
     public void addChild(MapNode child) {
+
         Element element = (Element) child;
         if(!this.getChildren().contains(element)){
             this.getChildren().add(element);

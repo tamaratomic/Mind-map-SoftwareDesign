@@ -7,18 +7,13 @@ import raf.dsw.gerumap.mapRepository.node.MapNode;
 
 public abstract class NodeFactory {
 
-    public MapNode getNode(MapTreeItem item){
+    public MapNode getNode(MapNode parent){
 
-        MapNode node = item.getMapNode();
-
-
-        if(node instanceof Project){
+        MapNode n  = createNode();
+        n.setParent(parent);
 
 
-        }
-
-
-        return null;
+        return n;
 
     }
 

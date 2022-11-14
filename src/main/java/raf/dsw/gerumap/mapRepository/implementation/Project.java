@@ -6,10 +6,11 @@ import raf.dsw.gerumap.observer.ISubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Project extends MapNodeComposite {
 
-    private String name;
+
     private String author;
    // private String path;
 
@@ -17,6 +18,7 @@ public class Project extends MapNodeComposite {
 
 
     public Project(){
+        this.name = "Project" + new Random().nextInt(100);
 
     }
 
@@ -27,7 +29,9 @@ public class Project extends MapNodeComposite {
     @Override
     public void addChild(MapNode child) {
         MindMap mindMap = (MindMap) child;
+       //moramo da imamo razlicita imena
         if(!this.getChildren().contains(mindMap)){
+        System.out.println(this.getChildren().size());
             this.getChildren().add(mindMap);
         }
     }

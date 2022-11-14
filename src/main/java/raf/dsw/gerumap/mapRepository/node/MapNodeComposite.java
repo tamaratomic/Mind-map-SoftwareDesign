@@ -8,7 +8,7 @@ public abstract class MapNodeComposite extends MapNode{
     List<MapNode> children;
 
     public MapNodeComposite(){
-
+        this.children = new ArrayList<>();
     }
 
     public MapNodeComposite(String name,MapNode parent) {

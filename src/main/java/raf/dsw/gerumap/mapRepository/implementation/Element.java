@@ -5,11 +5,17 @@ import raf.dsw.gerumap.observer.ISubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class Element extends MapNode {
 
     List<ISubscriber> subscribers;
+
+
+    public Element(){
+        this.name = "Element" + new Random().nextInt(100);
+    }
 
     public Element(String name, MapNode parent) {
         super(name, parent);
