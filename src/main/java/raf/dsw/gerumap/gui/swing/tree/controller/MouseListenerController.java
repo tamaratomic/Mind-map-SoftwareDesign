@@ -3,6 +3,7 @@ package raf.dsw.gerumap.gui.swing.tree.controller;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.gui.swing.view.ProjectPanel;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
+import raf.dsw.gerumap.mapRepository.node.MapNode;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -15,6 +16,8 @@ public class MouseListenerController implements MouseListener {
             System.out.println("kliknuto dva puta");
 
                 // MainFrame.getInstance().update(null);
+
+
 
                 MainFrame.getInstance().setDesktop(MainFrame.getInstance().getMapTree().getSelectedNode());
                // MainFrame.getInstance().update((Project) MainFrame.getInstance().getTree().getSelectedNode());

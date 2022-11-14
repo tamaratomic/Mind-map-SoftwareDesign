@@ -39,6 +39,7 @@ public class MapTreeImplementation implements MapTree{
         ((MapNodeComposite) parent.getMapNode()).addChild(child);
         treeView.expandPath(treeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(treeView);
+        parent.getMapNode().notifyObs(child);
     }
 
     @Override

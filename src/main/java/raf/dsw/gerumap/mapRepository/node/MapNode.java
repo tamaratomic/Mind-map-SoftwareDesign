@@ -1,9 +1,11 @@
 package raf.dsw.gerumap.mapRepository.node;
 
 import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.gerumap.observer.IPublisher;
 
 @Getter
+@Setter
 public abstract class MapNode implements IPublisher{
 
     private String name;
@@ -18,19 +20,5 @@ public abstract class MapNode implements IPublisher{
         this.parent = parent;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public MapNode getParent() {
-        return parent;
-    }
-
-    public void setParent(MapNode parent) {
-        this.parent = parent;
-    }
 }
