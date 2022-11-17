@@ -107,5 +107,11 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
                 updateUI();
             }
         }
+
+        if(notif instanceof MapTreeItem && ((MapTreeItem)notif).equals(mapTreeItem)){
+            this.removeAll();
+            updateUI();
+        }
+
     }
 }
