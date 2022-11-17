@@ -28,7 +28,7 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 //        BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
 //        this.setLayout(layout);
 
-        System.out.println("project panel");
+
         setPreferredSize(new Dimension(width,high));
         setResizable(true);
 

@@ -40,7 +40,6 @@ public class MainFrame extends JFrame implements ISubscriber {
     }
 
     private void initialise() {
-        System.out.println("initialise");
         actionManager = new ActionManager();
         mapTree = new MapTreeImplementation();
         initialiseGUI();
@@ -48,8 +47,6 @@ public class MainFrame extends JFrame implements ISubscriber {
     }
 
     private void initialiseGUI() {
-
-        System.out.println("initialise gui");
 
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
@@ -101,9 +98,7 @@ public class MainFrame extends JFrame implements ISubscriber {
         this.getMapTree().getSelectedNode().getMapNode().addSubs(panel);
         this.desktop.add(panel);
        // this.desktop.add(new ProjectPanel(item, 800, 1030));
-        System.out.println("pozvam ui");
         this.desktop.updateUI();
-        System.out.println("pozvan ui");
     }
 
     public void showError(Message message){

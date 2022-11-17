@@ -1,11 +1,9 @@
 package raf.dsw.gerumap;
 
 
-import raf.dsw.gerumap.core.ApplicationFramework;
-import raf.dsw.gerumap.core.Gui;
-import raf.dsw.gerumap.core.MapRepository;
-import raf.dsw.gerumap.core.MessageGenerator;
+import raf.dsw.gerumap.core.*;
 import raf.dsw.gerumap.gui.swing.SwingGui;
+import raf.dsw.gerumap.logger.ConsoleLogger;
 import raf.dsw.gerumap.mapRepository.MapRepositoryImpl;
 import raf.dsw.gerumap.messageGenerator.MessageGeneratorImplementation;
 
@@ -19,7 +17,6 @@ public class AppCore extends ApplicationFramework{
 
     @Override
     public void run() {
-        System.out.println("u ranu");
         this.gui.start();
     }
 
@@ -36,7 +33,8 @@ public class AppCore extends ApplicationFramework{
         Gui gui= new SwingGui(mapRepository);
         MessageGenerator messageGenerator = new MessageGeneratorImplementation();
         ApplicationFramework appCore= AppCore.getInstance();
-        appCore.initialise(gui,mapRepository,messageGenerator);
+        Logger logger = new ConsoleLogger();
+        appCore.initialise(gui,mapRepository,messageGenerator, logger);
         appCore.run();
     }
 }

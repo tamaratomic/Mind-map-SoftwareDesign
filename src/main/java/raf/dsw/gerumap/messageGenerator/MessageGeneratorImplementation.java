@@ -21,6 +21,10 @@ public class MessageGeneratorImplementation implements MessageGenerator {
         if(eventType == EventType.PROJECT_EXPLORER_CANNOT_BE_DELETED){
             notifyObs(new Message(1, "Greska prilikom brisanja", "Project explorer ne moze biti obrisan"));
         }
+        if(eventType == EventType.ONLY_PROJECT_HAS_AUTHOR){
+            notifyObs(new Message(1, "Greska prilikom dodele autora", "Samo projektima je moguce dodeliti autora"));
+        }
+
     }
 
     @Override

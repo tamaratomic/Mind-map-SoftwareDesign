@@ -1,11 +1,13 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.AuthorDialog;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 import raf.dsw.gerumap.mapRepository.node.MapNode;
+import raf.dsw.gerumap.messageGenerator.EventType;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -31,7 +33,7 @@ public class AuthorAction extends AbstractGerumapAction{
 
 
         if(selected == null){
-            System.out.println("selektujte projekat");
+            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
             return;
         }
 
@@ -41,7 +43,7 @@ public class AuthorAction extends AbstractGerumapAction{
 
         }
         else{
-            System.out.println("Samo projekat ima autora");
+            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.ONLY_PROJECT_HAS_AUTHOR);
         }
 
 

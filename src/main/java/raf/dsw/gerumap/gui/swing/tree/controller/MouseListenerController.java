@@ -18,7 +18,7 @@ public class MouseListenerController implements MouseListener {
 
         if((MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project) && e.getClickCount() == 2) {
 
-            System.out.println("kliknuto dva puta");
+
 
                 // MainFrame.getInstance().update(null);
 
@@ -26,7 +26,7 @@ public class MouseListenerController implements MouseListener {
 
                 MainFrame.getInstance().setDesktop(MainFrame.getInstance().getMapTree().getSelectedNode());
                // MainFrame.getInstance().update((Project) MainFrame.getInstance().getTree().getSelectedNode());
-                //   System.out.println("radii");
+
 
         }
     }

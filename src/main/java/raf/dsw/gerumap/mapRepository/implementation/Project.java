@@ -31,7 +31,7 @@ public class Project extends MapNodeComposite {
         MindMap mindMap = (MindMap) child;
        //moramo da imamo razlicita imena
         if(!this.getChildren().contains(mindMap)){
-        System.out.println(this.getChildren().size());
+
             this.getChildren().add(mindMap);
         }
     }
