@@ -10,6 +10,7 @@ public abstract class ApplicationFramework {
 
     protected Gui gui;
     protected MapRepository mapRepository;
+    protected MessageGenerator messageGenerator;
   //  private static ApplicationFramework instance;
 
     public ApplicationFramework() {
@@ -22,9 +23,12 @@ public abstract class ApplicationFramework {
 //    }
 
 
-    public void initialise(Gui gui, MapRepository mapRepository){
+    public void initialise(Gui gui, MapRepository mapRepository,MessageGenerator messageGenerator){
         this.gui = gui;
         this.mapRepository = mapRepository;
+        this.messageGenerator = messageGenerator;
+
+        this.messageGenerator.addSubs(gui);
     }
 
 
@@ -50,5 +54,13 @@ public abstract class ApplicationFramework {
 
     public void setMapRepository(MapRepository mapRepository) {
         this.mapRepository = mapRepository;
+    }
+
+    public MessageGenerator getMessageGenerator() {
+        return messageGenerator;
+    }
+
+    public void setMessageGenerator(MessageGenerator messageGenerator) {
+        this.messageGenerator = messageGenerator;
     }
 }

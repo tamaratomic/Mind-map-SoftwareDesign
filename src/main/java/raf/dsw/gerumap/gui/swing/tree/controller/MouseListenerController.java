@@ -11,6 +11,11 @@ import java.awt.event.MouseListener;
 public class MouseListenerController implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
+
+        if((MainFrame.getInstance().getMapTree().getSelectedNode()) == null){
+            return;
+        }
+
         if((MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode() instanceof Project) && e.getClickCount() == 2) {
 
             System.out.println("kliknuto dva puta");

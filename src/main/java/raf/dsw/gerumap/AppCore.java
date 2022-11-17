@@ -4,8 +4,10 @@ package raf.dsw.gerumap;
 import raf.dsw.gerumap.core.ApplicationFramework;
 import raf.dsw.gerumap.core.Gui;
 import raf.dsw.gerumap.core.MapRepository;
+import raf.dsw.gerumap.core.MessageGenerator;
 import raf.dsw.gerumap.gui.swing.SwingGui;
 import raf.dsw.gerumap.mapRepository.MapRepositoryImpl;
+import raf.dsw.gerumap.messageGenerator.MessageGeneratorImplementation;
 
 public class AppCore extends ApplicationFramework{
 
@@ -31,13 +33,10 @@ public class AppCore extends ApplicationFramework{
 
     public static void main(String[] args) {
         MapRepository mapRepository = new MapRepositoryImpl();
-        System.out.println("test1");
         Gui gui= new SwingGui(mapRepository);
-        System.out.println("test2");
+        MessageGenerator messageGenerator = new MessageGeneratorImplementation();
         ApplicationFramework appCore= AppCore.getInstance();
-        System.out.println("test3");
-        appCore.initialise(gui,mapRepository);
-        System.out.println("test4");
+        appCore.initialise(gui,mapRepository,messageGenerator);
         appCore.run();
     }
 }

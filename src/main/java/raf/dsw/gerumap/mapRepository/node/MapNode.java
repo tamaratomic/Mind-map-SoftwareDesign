@@ -2,10 +2,14 @@ package raf.dsw.gerumap.mapRepository.node;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.dsw.gerumap.AppCore;
+import raf.dsw.gerumap.messageGenerator.EventType;
 import raf.dsw.gerumap.observer.IPublisher;
 
-@Getter
-@Setter
+import java.util.ArrayList;
+import java.util.List;
+
+
 public abstract class MapNode implements IPublisher{
 
     protected String name;
@@ -20,5 +24,26 @@ public abstract class MapNode implements IPublisher{
         this.parent = parent;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        if (name.isEmpty()) {
+            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NAME_CANNOT_BE_EMPTY);
+            return;
+        }
+
+        this.name = name;
+        notifyObs(name);
+
+    }
+
+    public MapNode getParent() {
+        return parent;
+    }
+
+    public void setParent(MapNode parent) {
+        this.parent = parent;
+    }
 }

@@ -17,6 +17,8 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
     private MapTreeItem mapTreeItem;
     private JTabbedPane tabbedPane;
     private JPanel panel1;
+    private JLabel name;
+    private JLabel author;
 
 
     public ProjectPanel(MapTreeItem item, int high, int width){
@@ -33,8 +35,8 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
         MapNode node = item.getMapNode();
 
-        JLabel name = new JLabel("Naziv: " + item.getMapNode().getName());
-        JLabel author = new JLabel("Autor: " + ((Project)item.getMapNode()).getAuthor());
+        this.name = new JLabel("Naziv: " + item.getMapNode().getName());
+        this.author = new JLabel("Autor: " + ((Project)item.getMapNode()).getAuthor());
 
 
         JPanel panel = new JPanel();
@@ -53,8 +55,18 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
         setVisible(true);
     }
 
+    public void setAuthor(String author) {
+        this.author.setText(author);
+    }
+
+    @Override
 
 
+
+
+    public void setName(String name) {
+        this.name.setText(name);
+    }
 
     public void createTabbedPane(){
         tabbedPane = new JTabbedPaneButton();
@@ -70,7 +82,7 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
     @Override
     public void update(Object notif) {
-        System.out.println("NOTIFY   " + ((MapNode)notif).getParent().equals(mapTreeItem.getMapNode()));
+
         if(notif instanceof MindMap && ((MapNode)notif).getParent().equals(mapTreeItem.getMapNode())){
 
            if(tabbedPane.getTabCount() == ((MapNodeComposite)mapTreeItem.getMapNode()).getChildren().size()){
@@ -81,6 +93,19 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
            }
 
 
+        }
+        if(notif instanceof String){
+            String s =(String) notif;
+            //ime ili nesto.auth
+
+            if(s.contains(".")) {
+                String[] podeljenString = s.split("\\.");
+                setAuthor("Autor: " + podeljenString[0]);
+                updateUI();
+            }else{
+                setName("Naziv " + s);
+                updateUI();
+            }
         }
     }
 }

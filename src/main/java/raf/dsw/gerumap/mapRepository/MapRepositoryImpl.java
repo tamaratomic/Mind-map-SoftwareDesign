@@ -17,7 +17,7 @@ public class MapRepositoryImpl implements MapRepository {
 
         this.root = new ProjectExplorer("ProjectExplorer");
 
-        System.out.println("naravljen " + root.getName());
+
     }
 
 

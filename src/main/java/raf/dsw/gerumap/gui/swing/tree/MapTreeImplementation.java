@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.gui.swing.tree;
 
+import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
@@ -12,7 +13,9 @@ import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 import raf.dsw.gerumap.mapRepository.node.MapNode;
 import raf.dsw.gerumap.mapRepository.node.MapNodeComposite;
+import raf.dsw.gerumap.messageGenerator.EventType;
 
+import javax.lang.model.type.ErrorType;
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -32,8 +35,17 @@ public class MapTreeImplementation implements MapTree{
 
     @Override
     public void addChild(MapTreeItem parent) {
-        if (!(parent.getMapNode() instanceof MapNodeComposite))
+
+
+        if(parent == null){
+            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
             return;
+        }
+
+        if (!(parent.getMapNode() instanceof MapNodeComposite)){
+            return;
+        }
+
 
         MapNode child = createChild(parent.getMapNode());
         parent.add(new MapTreeItem(child));
@@ -50,7 +62,10 @@ public class MapTreeImplementation implements MapTree{
 
     @Override
     public void deleteChild(MapTreeItem selectedItem) {
-        if(selectedItem.getMapNode() instanceof ProjectExplorer) return;
+        if(selectedItem.getMapNode() instanceof ProjectExplorer){
+            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.PROJECT_EXPLORER_CANNOT_BE_DELETED);
+            return;
+        }
 
 
         MapTreeItem p = (MapTreeItem) selectedItem.getParent();

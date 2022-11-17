@@ -9,6 +9,7 @@ import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.MapTreeImplementation;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
+import raf.dsw.gerumap.messageGenerator.Message;
 import raf.dsw.gerumap.observer.ISubscriber;
 
 import javax.swing.*;
@@ -103,6 +104,10 @@ public class MainFrame extends JFrame implements ISubscriber {
         System.out.println("pozvam ui");
         this.desktop.updateUI();
         System.out.println("pozvan ui");
+    }
+
+    public void showError(Message message){
+        JOptionPane.showMessageDialog(this,message.getTitle(), message.getMessage(),message.getType());
     }
 
     public ActionManager getActionManager() {
