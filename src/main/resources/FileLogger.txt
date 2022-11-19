@@ -1,0 +1,1 @@
+[ERROR][19.11.2022. 15:31:38] Project explorer ne moze biti obrisan

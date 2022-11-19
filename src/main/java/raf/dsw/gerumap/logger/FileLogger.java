@@ -3,25 +3,35 @@ package raf.dsw.gerumap.logger;
 import raf.dsw.gerumap.core.Logger;
 import raf.dsw.gerumap.messageGenerator.Message;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class FileLogger implements Logger {
+
+
+
+
     @Override
     public void log(String poruka) {
 
 
+        FileWriter fw = null;
+        try {
+            File f = new File("src/main/resources/FileLogger.txt");
+            fw = new FileWriter(f);
+            String timeStamp = new SimpleDateFormat("dd.MM.yyyy. HH:mm:ss").format(Calendar.getInstance().getTime());
 
+            fw.append("[ERROR][" + timeStamp + "] " +poruka);
+          //  writer.write("[ERROR][" + timeStamp + "] " +poruka);
+
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
       /* String path = getClass().getResource("/").toString();
