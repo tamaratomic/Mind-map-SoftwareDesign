@@ -24,6 +24,9 @@ public class MessageGeneratorImplementation implements MessageGenerator {
         if(eventType == EventType.ONLY_PROJECT_HAS_AUTHOR){
             notifyObs(new Message(1, "Greska prilikom dodele autora", "Samo projektima je moguce dodeliti autora"));
         }
+        if(eventType == EventType.ROOT_CANNOT_BE_RENAMED){
+            notifyObs(new Message(1, "Greska prilikom promene imena", "Project exploreru ne moze biti promenjeno ime"));
+        }
 
     }
 
