@@ -21,6 +21,7 @@ public class NewProjectAction extends AbstractGerumapAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         MapTreeItem selected = (MapTreeItem) MainFrame.getInstance().getMapTree().getSelectedNode();
+        System.out.println(selected);
         MainFrame.getInstance().getMapTree().addChild(selected);
 
     }

@@ -1,6 +1,7 @@
 package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
+import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class RenameAction extends AbstractGerumapAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//         MainFrame.getInstance().getMapTree().renameNode(MainFrame.getInstance().getMapTree().get);
-//        MainFrame.getInstance().getMapTree().
+       // MapTreeItem selected = MainFrame.getInstance().getMapTree().getSelectedNode();
+       // selected.setName(e.getActionCommand());
     }
 }

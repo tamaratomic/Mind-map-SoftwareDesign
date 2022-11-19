@@ -9,6 +9,8 @@ import javax.swing.tree.DefaultTreeModel;
 
 public class MapTreeView extends JTree {
 
+
+
     public MapTreeView(DefaultTreeModel defaultTreeModel) {
         setModel(defaultTreeModel);
         MapTreeCellRenderer ruTreeCellRenderer = new MapTreeCellRenderer();

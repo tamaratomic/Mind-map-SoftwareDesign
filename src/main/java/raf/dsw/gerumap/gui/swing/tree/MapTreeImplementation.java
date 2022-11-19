@@ -62,6 +62,12 @@ public class MapTreeImplementation implements MapTree{
 
     @Override
     public void deleteChild(MapTreeItem selectedItem) {
+
+        if(selectedItem == null){
+            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
+            return;
+        }
+
         if(selectedItem.getMapNode() instanceof ProjectExplorer){
             AppCore.getInstance().getMessageGenerator().generateMessage(EventType.PROJECT_EXPLORER_CANNOT_BE_DELETED);
             return;
@@ -71,10 +77,15 @@ public class MapTreeImplementation implements MapTree{
         MapTreeItem p = (MapTreeItem) selectedItem.getParent();
 
 
+        if(p == null){
+            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
+            return;
+        }
+
         p.getMapNode().notifyObs(selectedItem.getMapNode());
         ((MapNodeComposite)p.getMapNode()).removeChild(selectedItem.getMapNode());
         p.remove(selectedItem);
-
+        setSelectedNode();
 
         SwingUtilities.updateComponentTreeUI(treeView);
 
@@ -87,10 +98,17 @@ public class MapTreeImplementation implements MapTree{
 
     }
 
+    @Override
+    public void setSelectedNode() {
+        treeView.setSelectionPaths(null);
+    }
+
 
     private MapNode createChild(MapNode parent) {
 
         //poziva fabr
+
+
 
         NodeFactory nf = UtilFactory.getFactory(parent);
         MapNode n = nf.getNode(parent);

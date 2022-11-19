@@ -12,4 +12,5 @@ public interface MapTree {
     MapTreeItem getSelectedNode();
     void deleteChild(MapTreeItem selectedItem);
     void renameNode(MapTreeItem selectedItem);
+    void setSelectedNode();
 }
