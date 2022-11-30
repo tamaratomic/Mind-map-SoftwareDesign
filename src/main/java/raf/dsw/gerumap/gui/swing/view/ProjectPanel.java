@@ -6,6 +6,7 @@ import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.node.MapNode;
 import raf.dsw.gerumap.mapRepository.node.MapNodeComposite;
 import raf.dsw.gerumap.observer.ISubscriber;
+import raf.dsw.gerumap.state.StateManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,8 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
     private JPanel panel1;
     private JLabel name;
     private JLabel author;
+    private StateManager stateManager;
+    private StateToolbar stateToolbar;
 
 
     public ProjectPanel(MapTreeItem item, int high, int width){
@@ -33,6 +36,9 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
         setResizable(true);
 
 
+        stateManager = new StateManager();
+        stateToolbar = new StateToolbar();
+        this.add(stateToolbar, BorderLayout.EAST);
         MapNode node = item.getMapNode();
 
         this.name = new JLabel("Naziv: " + item.getMapNode().getName());
@@ -50,8 +56,6 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
             createTabbedPane();
             addTabToTabbedPane((MapNodeComposite)node);
             this.add(new JSplitPane(JSplitPane.VERTICAL_SPLIT, panel, tabbedPane));
-
-
         setVisible(true);
     }
 
@@ -114,4 +118,13 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
         }
 
     }
+
+
+
+    public void startPojamState(){this.stateManager.setPojamState();}
+    public void startVezaState(){this.stateManager.setVezaState();}
+    public void startBrisanjeState(){this.stateManager.setBrisanjeState();}
+    public void startSelectState(){this.stateManager.setSelectState();}
+
+
 }

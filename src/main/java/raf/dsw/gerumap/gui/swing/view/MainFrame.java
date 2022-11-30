@@ -32,6 +32,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     private MapTree mapTree;
 
     private JPanel desktop;
+    private ProjectPanel projectPanel;
 
 
 
@@ -52,7 +53,7 @@ public class MainFrame extends JFrame implements ISubscriber {
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
-        setSize(screenWidth / 2, screenHeight / 2);
+        setSize(screenWidth , screenHeight );
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("GeRuMap");
@@ -94,9 +95,9 @@ public class MainFrame extends JFrame implements ISubscriber {
         this.desktop.removeAll();
         int high = desktop.getHeight();
         int width = desktop.getWidth();
-        ProjectPanel panel = new ProjectPanel(item, high, width);
-        this.getMapTree().getSelectedNode().getMapNode().addSubs(panel);
-        this.desktop.add(panel);
+        projectPanel = new ProjectPanel(item, high, width);
+        this.getMapTree().getSelectedNode().getMapNode().addSubs(projectPanel);
+        this.desktop.add(projectPanel);
        // this.desktop.add(new ProjectPanel(item, 800, 1030));
         this.desktop.updateUI();
     }

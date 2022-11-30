@@ -1,1 +1,1 @@
-[ERROR][19.11.2022. 23:07:05] Project exploreru ne moze biti promenjeno ime
+[ERROR][30.11.2022. 21:54:33] Nista nije selektovano
