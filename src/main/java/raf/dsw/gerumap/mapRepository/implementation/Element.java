@@ -1,16 +1,22 @@
 package raf.dsw.gerumap.mapRepository.implementation;
 
+import lombok.Getter;
+import lombok.Setter;
 import raf.dsw.gerumap.mapRepository.node.MapNode;
 import raf.dsw.gerumap.observer.ISubscriber;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+@Getter
+@Setter
 public class Element extends MapNode {
 
     List<ISubscriber> subscribers;
+    private int stroke = 2;
+    private Color color = Color.black;
 
 
     public Element(){

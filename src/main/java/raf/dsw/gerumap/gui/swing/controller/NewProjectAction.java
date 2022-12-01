@@ -2,6 +2,8 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.mapRepository.implementation.Element;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +24,12 @@ public class NewProjectAction extends AbstractGerumapAction{
     public void actionPerformed(ActionEvent e) {
         MapTreeItem selected = (MapTreeItem) MainFrame.getInstance().getMapTree().getSelectedNode();
         System.out.println(selected);
-        MainFrame.getInstance().getMapTree().addChild(selected);
+        if(selected.getMapNode() instanceof MindMap){
+            System.out.println("NE MOZETE DA SE DODA ELEMNT IZ OVOG TOOLBARA");
+        }else{
+            MainFrame.getInstance().getMapTree().addChild(selected);
+        }
+
 
     }
 }
