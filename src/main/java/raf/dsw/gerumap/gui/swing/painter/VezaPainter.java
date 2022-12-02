@@ -34,8 +34,9 @@ public class VezaPainter extends ElementPainter{
 
     public Shape getShape() {
         VezaElement element = (VezaElement) getElement();
-        shape = new Line2D.Double(element.getOdPojma().getWPosition(),element.getOdPojma().getHPosition()
-                                        ,element.getDoPojma().getWPosition(),element.getDoPojma().getHPosition());
+        shape = new Line2D.Double(element.getOdPojma().getWPosition() + (element.getOdPojma().getXSize()/2),element.getOdPojma().getHPosition() +  (element.getOdPojma().getYSize()/2)
+                                        ,element.getDoPojma().getWPosition() + (element.getDoPojma().getXSize() / 2),
+                                         element.getDoPojma().getHPosition() + (element.getDoPojma().getYSize())/2);
 
         return shape;
     }
