@@ -11,6 +11,7 @@ public class SelectAction extends AbstractGerumapAction {
 
     public SelectAction(){
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+        putValue(SMALL_ICON, loadIcon("/images/select.png"));
         putValue(NAME, "S");
         putValue(SHORT_DESCRIPTION, "Select");
     }

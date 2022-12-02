@@ -11,6 +11,7 @@ public class VezaAction extends AbstractGerumapAction {
 
     public VezaAction(){
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+        putValue(SMALL_ICON, loadIcon("/images/link.png"));
         putValue(NAME, "V");
         putValue(SHORT_DESCRIPTION, "Veza");
     }

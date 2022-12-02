@@ -10,7 +10,6 @@ import raf.dsw.gerumap.state.StateManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.font.TextLayout;
 
 public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
@@ -22,6 +21,8 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
     private JLabel author;
     private StateManager stateManager;
     private StateToolbar stateToolbar;
+
+    private Project project;
 
 
     public ProjectPanel(MapTreeItem item, int high, int width){
@@ -44,6 +45,7 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
         this.name = new JLabel("Naziv: " + item.getMapNode().getName());
         this.author = new JLabel("Autor: " + ((Project)item.getMapNode()).getAuthor());
 
+        setProject((Project) item.getMapNode());
 
         JPanel panel = new JPanel();
         panel.add(name, BorderLayout.PAGE_START);
@@ -79,7 +81,7 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
     public void addTabToTabbedPane(MapNodeComposite project){
         for(MapNode child: project.getChildren()){
-            tabbedPane.addTab(child.getName(), new JPanel());
+            tabbedPane.addTab(child.getName(), new MindMapPanel((MindMap) child, this));
         }
     }
 
@@ -93,7 +95,7 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
                tabbedPane.remove(((MapNodeComposite) mapTreeItem.getMapNode()).getChildren().indexOf((MindMap) notif));
            }else{
-               tabbedPane.addTab(((MindMap) notif).getName(), new JPanel());
+               tabbedPane.addTab(((MindMap) notif).getName(), new MindMapPanel((MindMap)notif, this));
            }
 
 
@@ -119,12 +121,32 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
     }
 
+    public Project getProject() {
+        return project;
+    }
 
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
     public void startPojamState(){this.stateManager.setPojamState();}
     public void startVezaState(){this.stateManager.setVezaState();}
     public void startBrisanjeState(){this.stateManager.setBrisanjeState();}
     public void startSelectState(){this.stateManager.setSelectState();}
+
+
+    public void misKliknut(int x, int y, MindMap mindMap){
+        this.stateManager.getCurrentState().mousePressed(x,y,mindMap);
+    }
+    public void misPovucen(int x, int y, MindMap mindMap){
+        this.stateManager.getCurrentState().mouseDragged(x,y,mindMap);
+    }
+
+    public void misOtpusten(int x, int y, MindMap mindMap){
+        this.stateManager.getCurrentState().mouseReleased(x,y,mindMap);
+
+    }
+
 
 
 }

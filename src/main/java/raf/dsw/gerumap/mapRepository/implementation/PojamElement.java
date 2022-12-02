@@ -8,14 +8,18 @@ import lombok.Setter;
 @Getter
 public class PojamElement extends Element{
 
-    private int xSize = 5;
-    private int ySize = 3;
+    private int xSize = 150;
+    private int ySize = 100;
     private int wPosition;
     private int hPosition;
 
+    protected String text = "TEXT";
 
-    public PojamElement(){
+
+    public PojamElement(int wPosition, int hPosition){
         super();
+        this.wPosition = wPosition;
+        this.hPosition = hPosition;
     }
 
 

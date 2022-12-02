@@ -11,6 +11,7 @@ public class PojamAction extends AbstractGerumapAction {
 
     public PojamAction(){
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
+        putValue(SMALL_ICON, loadIcon("/images/elipse.png"));
         putValue(NAME, "P");
         putValue(SHORT_DESCRIPTION, "Pojam");
     }

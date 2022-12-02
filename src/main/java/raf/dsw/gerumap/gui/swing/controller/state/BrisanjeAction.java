@@ -12,6 +12,7 @@ public class BrisanjeAction extends AbstractGerumapAction {
 
     public BrisanjeAction(){
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
+        putValue(SMALL_ICON, loadIcon("/images/remove.png"));
         putValue(NAME, "B");
         putValue(SHORT_DESCRIPTION, "Brisanje");
     }
