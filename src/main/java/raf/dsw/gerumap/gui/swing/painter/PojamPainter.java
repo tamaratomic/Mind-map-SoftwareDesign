@@ -5,7 +5,6 @@ import raf.dsw.gerumap.mapRepository.implementation.PojamElement;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.GeneralPath;
 
 public class PojamPainter extends ElementPainter{
 
@@ -46,7 +45,11 @@ public class PojamPainter extends ElementPainter{
     }
 
     @Override
-    public void elementAt() {
+    public boolean elementAt(int x, int y) {
+
+
+
+        return this.getShape().contains(new Point(x,y));
 
     }
 

@@ -3,10 +3,8 @@ package raf.dsw.gerumap.gui.swing.view;
 import raf.dsw.gerumap.gui.swing.controller.MouseContoller;
 import raf.dsw.gerumap.gui.swing.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.painter.PojamPainter;
-import raf.dsw.gerumap.mapRepository.implementation.Element;
-import raf.dsw.gerumap.mapRepository.implementation.MindMap;
-import raf.dsw.gerumap.mapRepository.implementation.PojamElement;
-import raf.dsw.gerumap.mapRepository.implementation.Project;
+import raf.dsw.gerumap.gui.swing.painter.VezaPainter;
+import raf.dsw.gerumap.mapRepository.implementation.*;
 import raf.dsw.gerumap.observer.ISubscriber;
 
 import javax.swing.*;
@@ -102,6 +100,14 @@ public class MindMapPanel extends JPanel implements ISubscriber {
         System.out.println("Repaint");
     }
 
+    public List<ElementPainter> getPainters() {
+        return painters;
+    }
+
+    public void setPainters(List<ElementPainter> painters) {
+        this.painters = painters;
+    }
+
     @Override
     public void update(Object notif) {
         if(notif instanceof String){
@@ -113,8 +119,10 @@ public class MindMapPanel extends JPanel implements ISubscriber {
             painters.add(new PojamPainter(element));
             repaint();
         }
-        else{
-
+        else if(notif instanceof VezaElement){
+            VezaElement element = (VezaElement) notif;
+            painters.add(new VezaPainter(element));
+            repaint();
         }
     }
 }

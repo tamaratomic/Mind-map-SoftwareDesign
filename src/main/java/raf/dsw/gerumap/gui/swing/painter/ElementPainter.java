@@ -3,7 +3,6 @@ package raf.dsw.gerumap.gui.swing.painter;
 import raf.dsw.gerumap.mapRepository.implementation.Element;
 
 import java.awt.*;
-import java.awt.geom.GeneralPath;
 
 public abstract class ElementPainter {
 
@@ -16,7 +15,7 @@ public abstract class ElementPainter {
 
     public abstract void draw(Graphics2D g);
 
-    public abstract void elementAt();
+    public abstract boolean elementAt(int x, int y);
 
     public Element getElement() {
         return element;
@@ -25,6 +24,7 @@ public abstract class ElementPainter {
     public void setElement(Element element) {
         this.element = element;
     }
+
 
 
 }

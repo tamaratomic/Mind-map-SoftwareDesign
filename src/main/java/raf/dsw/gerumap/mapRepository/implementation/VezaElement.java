@@ -11,6 +11,8 @@ public class VezaElement extends Element {
     private PojamElement odPojma;
     private PojamElement doPojma;
 
-
-
+    public VezaElement(PojamElement odPojma, PojamElement doPojma) {
+        this.odPojma = odPojma;
+        this.doPojma = doPojma;
+    }
 }

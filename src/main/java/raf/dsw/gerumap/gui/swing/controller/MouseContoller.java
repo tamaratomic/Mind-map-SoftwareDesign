@@ -15,18 +15,18 @@ public class MouseContoller extends MouseAdapter implements MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
         mindMapPanel.getProjectPanel().misKliknut(e.getX(),e.getY(), mindMapPanel.getMindMap());
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
+    public void mouseDragged(MouseEvent e) {
+        mindMapPanel.getProjectPanel().misPovucen(e.getX(),e.getY(), mindMapPanel.getMindMap());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        mindMapPanel.getProjectPanel().misOtpusten(e.getX(),e.getY(), mindMapPanel.getMindMap());
     }
 
     @Override
