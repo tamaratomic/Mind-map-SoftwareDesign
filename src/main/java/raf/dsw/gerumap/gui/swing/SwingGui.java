@@ -26,7 +26,7 @@ public class SwingGui implements Gui {
     }
 
     @Override
-    public void update(Object notif) {
+    public void update(Object notif, Object notif2) {
         if(notif instanceof Message){
             Message msg=(Message)notif;
             MainFrame.getInstance().showError(msg);

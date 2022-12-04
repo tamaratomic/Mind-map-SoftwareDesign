@@ -1,6 +1,8 @@
 package raf.dsw.gerumap.state.concrete;
 
 import raf.dsw.gerumap.gui.swing.painter.PojamPainter;
+import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.PojamElement;
 import raf.dsw.gerumap.state.State;
@@ -12,10 +14,13 @@ import java.awt.geom.GeneralPath;
 public class PojamState implements State {
 
     @Override
-    public void mousePressed(int x, int y, MindMap mindMap) {
+    public void mousePressed(int x, int y, MindMap mindMap, MapTreeItem parent) {
+      //  MainFrame.getInstance().getMapTree().addChild(M);
+      //  MainFrame.getInstance().getMapTree().addChild(parent, x, y);
         PojamElement pojamElement = new PojamElement(x,y);
+        System.out.println(pojamElement.getName());
         mindMap.addChild(pojamElement);
-        mindMap.notifyObs(pojamElement);
+        mindMap.notifyObs(pojamElement, parent);
     }
 
     @Override
@@ -24,7 +29,7 @@ public class PojamState implements State {
     }
 
     @Override
-    public void mouseReleased(int x, int y, MindMap mindMap) {
+    public void mouseReleased(int x, int y, MindMap mindMap, MapTreeItem parent) {
 
     }
 }

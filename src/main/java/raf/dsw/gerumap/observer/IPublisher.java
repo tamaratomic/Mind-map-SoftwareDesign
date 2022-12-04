@@ -4,5 +4,5 @@ public interface IPublisher {
 
     void addSubs(ISubscriber sub);
     void removeSubs(ISubscriber sub);
-    void notifyObs(Object notif);
+    void notifyObs(Object notif, Object not);
 }

@@ -53,12 +53,12 @@ public class ProjectExplorer extends MapNodeComposite {
     }
 
     @Override
-    public void notifyObs(Object notif) {
+    public void notifyObs(Object notif, Object notif2) {
         if (notif == null || this.subscribers == null || this.subscribers.isEmpty())
             return;
 
         for (ISubscriber listener : subscribers) {
-            listener.update(notif);
+            listener.update(notif, notif2);
         }
     }
 }

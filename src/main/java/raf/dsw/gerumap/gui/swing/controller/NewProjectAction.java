@@ -27,7 +27,7 @@ public class NewProjectAction extends AbstractGerumapAction{
         if(selected.getMapNode() instanceof MindMap){
             System.out.println("NE MOZETE DA SE DODA ELEMNT IZ OVOG TOOLBARA");
         }else{
-            MainFrame.getInstance().getMapTree().addChild(selected);
+            MainFrame.getInstance().getMapTree().addChild(selected, 0, 0);
         }
 
 

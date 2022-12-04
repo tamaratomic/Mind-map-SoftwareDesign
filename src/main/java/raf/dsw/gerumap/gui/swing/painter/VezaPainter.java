@@ -1,11 +1,9 @@
 package raf.dsw.gerumap.gui.swing.painter;
 
 import raf.dsw.gerumap.mapRepository.implementation.Element;
-import raf.dsw.gerumap.mapRepository.implementation.PojamElement;
 import raf.dsw.gerumap.mapRepository.implementation.VezaElement;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 
 public class VezaPainter extends ElementPainter{

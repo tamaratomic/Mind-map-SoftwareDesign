@@ -21,7 +21,7 @@ public class DeleteAction extends AbstractGerumapAction{
     public void actionPerformed(ActionEvent e) {
 
         if(MainFrame.getInstance().getMapTree().getSelectedNode() != null){
-            MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().notifyObs(MainFrame.getInstance().getMapTree().getSelectedNode());
+            MainFrame.getInstance().getMapTree().getSelectedNode().getMapNode().notifyObs(MainFrame.getInstance().getMapTree().getSelectedNode(), null);
         }
         MainFrame.getInstance().getMapTree().deleteChild(MainFrame.getInstance().getMapTree().getSelectedNode());
 

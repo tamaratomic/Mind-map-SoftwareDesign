@@ -1,9 +1,11 @@
 package raf.dsw.gerumap.gui.swing.tree;
 
+import lombok.Getter;
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
+import raf.dsw.gerumap.gui.swing.view.MindMapPanel;
 import raf.dsw.gerumap.mapRepository.factory.NodeFactory;
 import raf.dsw.gerumap.mapRepository.factory.ProjectFactory;
 import raf.dsw.gerumap.mapRepository.factory.UtilFactory;
@@ -14,15 +16,21 @@ import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 import raf.dsw.gerumap.mapRepository.node.MapNode;
 import raf.dsw.gerumap.mapRepository.node.MapNodeComposite;
 import raf.dsw.gerumap.messageGenerator.EventType;
+import raf.dsw.gerumap.observer.ISubscriber;
 
 import javax.lang.model.type.ErrorType;
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MapTreeImplementation implements MapTree{
+
+public class MapTreeImplementation implements MapTree, ISubscriber {
 
     private MapTreeView treeView;
     private DefaultTreeModel treeModel;
+    private List<MapTreeItem> items;
 
 
     @Override
@@ -30,11 +38,12 @@ public class MapTreeImplementation implements MapTree{
         MapTreeItem root = new MapTreeItem(projectExplorer);
         treeModel = new DefaultTreeModel(root);
         treeView = new MapTreeView(treeModel);
+        items = new ArrayList<>();
         return treeView;
     }
 
     @Override
-    public void addChild(MapTreeItem parent) {
+    public void addChild(MapTreeItem parent, int x, int y) {
 
 
         if(parent == null){
@@ -47,12 +56,17 @@ public class MapTreeImplementation implements MapTree{
         }
 
 
-        MapNode child = createChild(parent.getMapNode());
-        parent.add(new MapTreeItem(child));
+        MapNode child = createChild(parent.getMapNode(), x, y);
+        if(child instanceof MindMap){
+            child.addSubs(this);
+        }
+        MapTreeItem newChild = new MapTreeItem(child);
+        parent.add(newChild);
         ((MapNodeComposite) parent.getMapNode()).addChild(child);
         treeView.expandPath(treeView.getSelectionPath());
+        items.add(newChild);
         SwingUtilities.updateComponentTreeUI(treeView);
-        parent.getMapNode().notifyObs(child);
+        parent.getMapNode().notifyObs(child, null);
     }
 
     @Override
@@ -82,7 +96,7 @@ public class MapTreeImplementation implements MapTree{
             return;
         }
 
-        p.getMapNode().notifyObs(selectedItem.getMapNode());
+        p.getMapNode().notifyObs(selectedItem.getMapNode(), null);
         ((MapNodeComposite)p.getMapNode()).removeChild(selectedItem.getMapNode());
         p.remove(selectedItem);
         setSelectedNode();
@@ -103,16 +117,43 @@ public class MapTreeImplementation implements MapTree{
         treeView.setSelectionPaths(null);
     }
 
+    @Override
+    public List<MapTreeItem> getItems() {
+        return items;
+    }
 
-    private MapNode createChild(MapNode parent) {
+    @Override
+    public void refresh() {
+
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+
+    private MapNode createChild(MapNode parent, int x, int y) {
 
         //poziva fabr
 
 
 
         NodeFactory nf = UtilFactory.getFactory(parent);
-        MapNode n = nf.getNode(parent);
+        System.out.println(nf);
+        MapNode n = nf.getNode(parent, x, y);
 
         return n;
     }
+
+    @Override
+    public void update(Object child, Object parent) {
+        MapTreeItem parentItem = (MapTreeItem) parent;
+        MapTreeItem newChild = new MapTreeItem((MapNode) child);
+        parentItem.add(newChild);
+        System.out.println(((MapTreeItem) parent).getMapNode().getName() + "      parent");
+        System.out.println(((MapNode) child).getName() + "              child");
+        items.add(newChild);
+        treeView.expandPath(treeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+
+
 }

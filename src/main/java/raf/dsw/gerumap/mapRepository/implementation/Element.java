@@ -20,7 +20,7 @@ public class Element extends MapNode {
 
 
     public Element(){
-        this.name = "Element" + new Random().nextInt(100);
+
     }
 
     public Element(String name, MapNode parent) {
@@ -50,13 +50,13 @@ public class Element extends MapNode {
     }
 
     @Override
-    public void notifyObs(Object notif) {
+    public void notifyObs(Object notif, Object notif2) {
 
         if (notif == null || this.subscribers == null || this.subscribers.isEmpty())
             return;
 
         for (ISubscriber listener : subscribers) {
-            listener.update(notif);
+            listener.update(notif, notif2);
         }
 
     }

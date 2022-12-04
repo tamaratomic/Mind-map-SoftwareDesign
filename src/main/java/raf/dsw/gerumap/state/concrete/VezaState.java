@@ -2,6 +2,7 @@ package raf.dsw.gerumap.state.concrete;
 
 import raf.dsw.gerumap.gui.swing.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.painter.PojamPainter;
+import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MindMapPanel;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.PojamElement;
@@ -19,7 +20,7 @@ public class VezaState implements State {
     PojamElement doPojma;
 
     @Override
-    public void mousePressed(int x, int y, MindMap mindMap) {
+    public void mousePressed(int x, int y, MindMap mindMap, MapTreeItem parent) {
         List<ISubscriber> listaSubova =  mindMap.getSubscribers();
 
         for(ISubscriber subscriber:listaSubova){
@@ -53,7 +54,7 @@ public class VezaState implements State {
     }
 
     @Override
-    public void mouseReleased(int x, int y, MindMap mindMap) {
+    public void mouseReleased(int x, int y, MindMap mindMap, MapTreeItem parent) {
 
         List<ISubscriber> listaSubova =  mindMap.getSubscribers();
 
@@ -81,7 +82,7 @@ public class VezaState implements State {
 
         VezaElement vezaElement = new VezaElement(odPojma,doPojma);
         mindMap.addChild(vezaElement);
-        mindMap.notifyObs(vezaElement);
+        mindMap.notifyObs(vezaElement, parent);
 
     }
 }

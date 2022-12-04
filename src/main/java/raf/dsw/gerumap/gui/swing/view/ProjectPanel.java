@@ -56,7 +56,7 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
       //  if (item.getMapNode() instanceof Project && !((Project) item.getMapNode()).getChildren().isEmpty()){
             createTabbedPane();
-            addTabToTabbedPane((MapNodeComposite)node);
+            addTabToTabbedPane(mapTreeItem);
             this.add(new JSplitPane(JSplitPane.VERTICAL_SPLIT, panel, tabbedPane));
         setVisible(true);
     }
@@ -79,15 +79,16 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
         tabbedPane.setFocusable(true);
     }
 
-    public void addTabToTabbedPane(MapNodeComposite project){
+    public void addTabToTabbedPane(MapTreeItem item){
+        MapNodeComposite project = (MapNodeComposite) item.getMapNode();
         for(MapNode child: project.getChildren()){
-            tabbedPane.addTab(child.getName(), new MindMapPanel((MindMap) child, this));
+            tabbedPane.addTab(child.getName(), new MindMapPanel(item,(MindMap) child, this));
         }
     }
 
 
     @Override
-    public void update(Object notif) {
+    public void update(Object notif, Object notif2) {
 
         if(notif instanceof MindMap && ((MapNode)notif).getParent().equals(mapTreeItem.getMapNode())){
 
@@ -95,7 +96,7 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
                tabbedPane.remove(((MapNodeComposite) mapTreeItem.getMapNode()).getChildren().indexOf((MindMap) notif));
            }else{
-               tabbedPane.addTab(((MindMap) notif).getName(), new MindMapPanel((MindMap)notif, this));
+               tabbedPane.addTab(((MindMap) notif).getName(), new MindMapPanel(new MapTreeItem((MapNode) notif),(MindMap)notif, this));
            }
 
 
@@ -136,14 +137,26 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
 
     public void misKliknut(int x, int y, MindMap mindMap){
-        this.stateManager.getCurrentState().mousePressed(x,y,mindMap);
+        MapTreeItem parent = null;
+        for(MapTreeItem item: MainFrame.getInstance().getMapTree().getItems()){
+            if(item.getMapNode() instanceof MindMap && item.getMapNode().getName().equalsIgnoreCase(mindMap.getName())){
+                parent = item;
+            }
+        }
+        this.stateManager.getCurrentState().mousePressed(x,y,mindMap, parent);
     }
     public void misPovucen(int x, int y, MindMap mindMap){
         this.stateManager.getCurrentState().mouseDragged(x,y,mindMap);
     }
 
     public void misOtpusten(int x, int y, MindMap mindMap){
-        this.stateManager.getCurrentState().mouseReleased(x,y,mindMap);
+        MapTreeItem parent = null;
+        for(MapTreeItem item: MainFrame.getInstance().getMapTree().getItems()){
+            if(item.getMapNode() instanceof MindMap && item.getMapNode().getName().equalsIgnoreCase(mindMap.getName())){
+                parent = item;
+            }
+        }
+        this.stateManager.getCurrentState().mouseReleased(x,y,mindMap, parent);
 
     }
 

@@ -7,9 +7,9 @@ import raf.dsw.gerumap.mapRepository.node.MapNode;
 
 public abstract class NodeFactory {
 
-    public MapNode getNode(MapNode parent){
+    public MapNode getNode(MapNode parent, int x, int y){
 
-        MapNode n  = createNode();
+        MapNode n  = createNode(x, y);
         n.setParent(parent);
 
 
@@ -18,5 +18,5 @@ public abstract class NodeFactory {
     }
 
 
-    public abstract MapNode createNode();
+    public abstract MapNode createNode(int x, int y);
 }

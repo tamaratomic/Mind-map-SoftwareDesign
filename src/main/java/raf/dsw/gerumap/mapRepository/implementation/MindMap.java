@@ -32,7 +32,7 @@ public class MindMap extends MapNodeComposite {
         Element element = (Element) child;
         if(!this.getChildren().contains(element)){
             this.getChildren().add(element);
-            notifyObs(child);
+         //   notifyObs(child, null);
         }
     }
 
@@ -73,14 +73,17 @@ public class MindMap extends MapNodeComposite {
     }
 
     @Override
-    public void notifyObs(Object notif) {
+    public void notifyObs(Object notif, Object notif2) {
 
         if (notif == null || this.subscribers == null || this.subscribers.isEmpty())
             return;
 
         for (ISubscriber listener : subscribers) {
-            listener.update(notif);
+            listener.update(notif, notif2);
         }
 
     }
+
+
+
 }

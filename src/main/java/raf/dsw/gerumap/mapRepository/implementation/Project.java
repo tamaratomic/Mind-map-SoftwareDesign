@@ -50,7 +50,7 @@ public class Project extends MapNodeComposite {
 
     public void setAuthor(String author) {
         this.author = author;
-        notifyObs(author + ".auth");
+        notifyObs(author + ".auth", null);
     }
 
 
@@ -73,13 +73,13 @@ public class Project extends MapNodeComposite {
     }
 
     @Override
-    public void notifyObs(Object notif) {
+    public void notifyObs(Object notif, Object notif2) {
 
         if (notif == null || this.subscribers == null || this.subscribers.isEmpty())
             return;
 
         for (ISubscriber listener : subscribers) {
-            listener.update(notif);
+            listener.update(notif, notif2);
         }
 
     }

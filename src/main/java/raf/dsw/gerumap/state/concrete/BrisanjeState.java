@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.state.concrete;
 
+import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.state.State;
 
@@ -7,7 +8,7 @@ import java.awt.event.MouseEvent;
 
 public class BrisanjeState implements State {
     @Override
-    public void mousePressed(int x, int y, MindMap mindMap) {
+    public void mousePressed(int x, int y, MindMap mindMap,  MapTreeItem parent) {
 
     }
 
@@ -17,7 +18,7 @@ public class BrisanjeState implements State {
     }
 
     @Override
-    public void mouseReleased(int x, int y, MindMap mindMap) {
+    public void mouseReleased(int x, int y, MindMap mindMap, MapTreeItem parent) {
 
     }
 }

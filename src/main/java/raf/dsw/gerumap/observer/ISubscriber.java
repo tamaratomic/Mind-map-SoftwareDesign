@@ -2,5 +2,5 @@ package raf.dsw.gerumap.observer;
 
 public interface ISubscriber {
 
-    void update(Object notif);
+    void update(Object notif, Object notif2);
 }

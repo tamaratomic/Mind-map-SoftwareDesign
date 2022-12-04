@@ -4,6 +4,7 @@ import raf.dsw.gerumap.gui.swing.controller.MouseContoller;
 import raf.dsw.gerumap.gui.swing.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.painter.VezaPainter;
+import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.mapRepository.implementation.*;
 import raf.dsw.gerumap.observer.ISubscriber;
 
@@ -25,10 +26,13 @@ public class MindMapPanel extends JPanel implements ISubscriber {
     private MouseContoller mouseContoller = new MouseContoller(this);
 
     private ProjectPanel projectPanel;
+    private MapTreeItem mapTreeItem;
 
-    public MindMapPanel(MindMap mindMap, ProjectPanel projectPanel){
+    public MindMapPanel(MapTreeItem item, MindMap mindMap, ProjectPanel projectPanel){
         setMindMap(mindMap);
         setProjectPanel(projectPanel);
+
+        mapTreeItem = item;
 
         this.panCenter = new JPanel();
         this.mindMap.addSubs(this);
@@ -94,7 +98,9 @@ public class MindMapPanel extends JPanel implements ISubscriber {
 
         }*/
 
+        System.out.println(painters.size());
         for(ElementPainter painter:painters){
+            System.out.println(painter.getElement().getName());
             painter.draw(graphics2D);
         }
         System.out.println("Repaint");
@@ -109,15 +115,17 @@ public class MindMapPanel extends JPanel implements ISubscriber {
     }
 
     @Override
-    public void update(Object notif) {
+    public void update(Object notif, Object notif2) {
         if(notif instanceof String){
             String s = (String)notif;
             setName(s);
         }
         else if(notif instanceof PojamElement){
             PojamElement element = (PojamElement) notif;
+//            System.out.println(element.getName() + "       mindmappanel");
             painters.add(new PojamPainter(element));
             repaint();
+
         }
         else if(notif instanceof VezaElement){
             VezaElement element = (VezaElement) notif;

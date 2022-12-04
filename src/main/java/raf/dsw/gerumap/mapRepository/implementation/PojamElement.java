@@ -16,10 +16,12 @@ public class PojamElement extends Element{
     protected String text = "TEXT";
 
 
+
     public PojamElement(int wPosition, int hPosition){
         super();
         this.wPosition = wPosition;
         this.hPosition = hPosition;
+        this.setName(" -");
     }
 
 

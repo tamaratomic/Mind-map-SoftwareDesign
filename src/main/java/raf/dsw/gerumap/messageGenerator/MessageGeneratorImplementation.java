@@ -13,19 +13,19 @@ public class MessageGeneratorImplementation implements MessageGenerator {
     @Override
     public void generateMessage(EventType eventType) {
         if(eventType == EventType.NAME_CANNOT_BE_EMPTY){
-            notifyObs(new Message(1,"Greska prilikom dodele imena","Polje za ime ne moze biti prazno"));
+            notifyObs(new Message(1,"Greska prilikom dodele imena","Polje za ime ne moze biti prazno"), null);
         }
         if(eventType == EventType.NOTHING_SELECTED){
-            notifyObs(new Message(2, "Greska prilikom selektovanja", "Nista nije selektovano"));
+            notifyObs(new Message(2, "Greska prilikom selektovanja", "Nista nije selektovano"), null);
         }
         if(eventType == EventType.PROJECT_EXPLORER_CANNOT_BE_DELETED){
-            notifyObs(new Message(1, "Greska prilikom brisanja", "Project explorer ne moze biti obrisan"));
+            notifyObs(new Message(1, "Greska prilikom brisanja", "Project explorer ne moze biti obrisan"), null);
         }
         if(eventType == EventType.ONLY_PROJECT_HAS_AUTHOR){
-            notifyObs(new Message(1, "Greska prilikom dodele autora", "Samo projektima je moguce dodeliti autora"));
+            notifyObs(new Message(1, "Greska prilikom dodele autora", "Samo projektima je moguce dodeliti autora"), null);
         }
         if(eventType == EventType.ROOT_CANNOT_BE_RENAMED){
-            notifyObs(new Message(1, "Greska prilikom promene imena", "Project exploreru ne moze biti promenjeno ime"));
+            notifyObs(new Message(1, "Greska prilikom promene imena", "Project exploreru ne moze biti promenjeno ime"), null);
         }
 
     }
@@ -52,12 +52,12 @@ public class MessageGeneratorImplementation implements MessageGenerator {
     }
 
     @Override
-    public void notifyObs(Object notif) {
+    public void notifyObs(Object notif,Object notif2) {
         if(notif == null || this.subscribers == null || this.subscribers.isEmpty())
             return;
 
         for(ISubscriber listener : subscribers){
-            listener.update(notif);
+            listener.update(notif, notif2);
         }
     }
 }

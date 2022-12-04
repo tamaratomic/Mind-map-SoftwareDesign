@@ -1,30 +1,32 @@
 package raf.dsw.gerumap.mapRepository.factory;
 
 import raf.dsw.gerumap.AppCore;
-import raf.dsw.gerumap.mapRepository.implementation.Element;
-import raf.dsw.gerumap.mapRepository.implementation.MindMap;
-import raf.dsw.gerumap.mapRepository.implementation.Project;
-import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
+import raf.dsw.gerumap.mapRepository.implementation.*;
 import raf.dsw.gerumap.mapRepository.node.MapNode;
 import raf.dsw.gerumap.messageGenerator.EventType;
 
 public class UtilFactory {
 
-    private static ProjectFactory pf = new ProjectFactory();
+    private static ProjectFactory pef = new ProjectFactory();
     private static MindMapFactory mmf = new MindMapFactory();
-    private static ElementFactory ef = new ElementFactory();
+    private static PojamFactory epf = new PojamFactory();
+    private static VezaFactory vf = new VezaFactory();
 
     public static NodeFactory getFactory(MapNode node){
 
         if(node instanceof ProjectExplorer){
-            return pf;
+            return pef;
         }
-        else if(node instanceof Project){
+         if(node instanceof Project){
 
             return mmf;
         }
         else if(node instanceof MindMap){
-            return ef;
+            return epf;
+        }else if(node instanceof PojamElement){
+            return epf;
+        }else if(node instanceof VezaElement){
+            return vf;
         }
 
 

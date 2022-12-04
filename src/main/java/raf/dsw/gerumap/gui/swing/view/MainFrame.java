@@ -141,7 +141,7 @@ public class MainFrame extends JFrame implements ISubscriber {
     }
 
     @Override
-    public void update(Object notif) {
+    public void update(Object notif, Object notif2) {
 
     }
 }

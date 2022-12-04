@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.gui.swing.painter;
 
+import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.mapRepository.implementation.Element;
 
 import java.awt.*;

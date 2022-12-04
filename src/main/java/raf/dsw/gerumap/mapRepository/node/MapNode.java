@@ -35,7 +35,7 @@ public abstract class MapNode implements IPublisher{
         }
 
         this.name = name;
-        notifyObs(name);
+        notifyObs(name, null);
 
     }
 

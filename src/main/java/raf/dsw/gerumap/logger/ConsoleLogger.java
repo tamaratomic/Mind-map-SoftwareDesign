@@ -19,7 +19,7 @@ public class ConsoleLogger implements Logger {
     }
 
     @Override
-    public void update(Object notif) {
+    public void update(Object notif, Object notif2) {
         if(notif instanceof Message){
             Message msg = (Message)notif;
             log(msg.getTitle());
