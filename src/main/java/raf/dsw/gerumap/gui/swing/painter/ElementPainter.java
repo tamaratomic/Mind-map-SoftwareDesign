@@ -25,7 +25,4 @@ public abstract class ElementPainter {
     public void setElement(Element element) {
         this.element = element;
     }
-
-
-
 }

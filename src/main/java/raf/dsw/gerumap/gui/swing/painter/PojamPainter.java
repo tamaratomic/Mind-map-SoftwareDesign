@@ -29,7 +29,7 @@ public class PojamPainter extends ElementPainter{
         g.setStroke(stroke);
         g.draw(getShape());
 
-        System.out.println("draw");
+
 
         g.fill(getShape());
 
@@ -38,16 +38,17 @@ public class PojamPainter extends ElementPainter{
         g.setColor(Color.black);
         g.drawOval(element.getWPosition(),element.getHPosition(),element.getXSize(), element.getYSize());
 
-        if(element.getName() == " -"){
+
+        /*if(element.getName() == " -"){
             RenameDialog rd = new RenameDialog(element);
             MainFrame.getInstance().getMapTree().refresh();
             rd.dispose();
             rd.setVisible(false);
-        }
+        }*/
 
         g.drawString(element.getName(),element.getWPosition() + 50,element.getHPosition() + 50);
 
-        g.setPaint(Color.BLACK);
+
 //        g.drawString(element.getName(), element.getWPosition()+10,
 //                element.getHPosition()+10);
 

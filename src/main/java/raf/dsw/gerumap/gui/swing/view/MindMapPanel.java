@@ -103,6 +103,18 @@ public class MindMapPanel extends JPanel implements ISubscriber {
             System.out.println(painter.getElement().getName());
             painter.draw(graphics2D);
         }
+
+        for(int i = 0; i < painters.size(); i++){
+            if(painters.get(i).getElement() instanceof VezaElement){
+                VezaElement vezaElement = (VezaElement) painters.get(i).getElement();
+                if(vezaElement.getOdPojma() == null){
+                    painters.remove(painters.get(i));
+                    repaint();
+                }
+            }
+        }
+
+
         System.out.println("Repaint");
     }
 
@@ -132,5 +144,13 @@ public class MindMapPanel extends JPanel implements ISubscriber {
             painters.add(new VezaPainter(element));
             repaint();
         }
+        else if((notif instanceof Point) && (notif2 instanceof Point)){
+            Point start = (Point) notif;
+            Point end = (Point) notif2;
+            VezaPainter vezaPainter = new VezaPainter(new VezaElement(null,null,start,end));
+            painters.add(vezaPainter);
+            repaint();
+        }
+
     }
 }

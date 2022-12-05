@@ -12,6 +12,7 @@ import raf.dsw.gerumap.mapRepository.node.MapNode;
 import raf.dsw.gerumap.observer.ISubscriber;
 import raf.dsw.gerumap.state.State;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +24,9 @@ public class VezaState implements State {
     PojamElement odPojma;
     PojamElement doPojma;
 
+    Point start;
+    Point end;
+
      private List<VezaElement> listaVeza = new ArrayList<>();
 
      private  boolean postoji;
@@ -33,6 +37,7 @@ public class VezaState implements State {
         odPojma = null;
         doPojma = null;
         postoji = false;
+
 
         for(ISubscriber subscriber:listaSubova){
 
@@ -49,7 +54,8 @@ public class VezaState implements State {
                         if(pojamPainter.elementAt(x, y)){
 
                             odPojma = (PojamElement) pojamPainter.getElement();
-                            System.out.println("Prvi" + pojamPainter.getElement().getName());
+                            start = new Point(x,y);
+
                         }
                     }
                 }
@@ -62,12 +68,19 @@ public class VezaState implements State {
     @Override
     public void mouseDragged(int x, int y, MindMap mindMap) {
 
+
+
+        if (odPojma != null) {
+            mindMap.notifyObs(start, new Point(x, y));
+        }
     }
 
     @Override
     public void mouseReleased(int x, int y, MindMap mindMap, MapTreeItem parent) {
 
+
         List<ISubscriber> listaSubova =  mindMap.getSubscribers();
+        PojamPainter pojamPainter = null;
 
         for(ISubscriber subscriber:listaSubova){
             if(subscriber instanceof MindMapPanel){
@@ -77,16 +90,20 @@ public class VezaState implements State {
 
                 for(ElementPainter painter:painters){
                     if(painter instanceof PojamPainter){
-                        PojamPainter pojamPainter = (PojamPainter) painter;
+                        pojamPainter = (PojamPainter) painter;
 
                         if(pojamPainter.elementAt(x, y)){
                             doPojma = (PojamElement) pojamPainter.getElement();
-                            System.out.println("Drugi" + pojamPainter.getElement().getName());
+                            end = new Point(x,y);
+
                         }
                     }
                 }
             }
         }
+
+
+
 
 
 
@@ -97,12 +114,17 @@ public class VezaState implements State {
                 }
             }
                 if(!postoji) {
-                    VezaElement vezaElement = new VezaElement(odPojma, doPojma);
+                    VezaElement vezaElement = new VezaElement(odPojma, doPojma, start, end);
                     listaVeza.add(vezaElement);
                     mindMap.addChild(vezaElement);
                     mindMap.notifyObs(vezaElement, parent);
                 }
+
         }
 
+
+
     }
+
+
 }

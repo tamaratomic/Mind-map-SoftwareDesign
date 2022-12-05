@@ -144,14 +144,16 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
 
     @Override
     public void update(Object child, Object parent) {
-        MapTreeItem parentItem = (MapTreeItem) parent;
-        MapTreeItem newChild = new MapTreeItem((MapNode) child);
-        parentItem.add(newChild);
-        System.out.println(((MapTreeItem) parent).getMapNode().getName() + "      parent");
-        System.out.println(((MapNode) child).getName() + "              child");
-        items.add(newChild);
-        treeView.expandPath(treeView.getSelectionPath());
-        SwingUtilities.updateComponentTreeUI(treeView);
+        if((!(parent instanceof Point)) && !(parent == null)) {
+            MapTreeItem parentItem = (MapTreeItem) parent;
+            MapTreeItem newChild = new MapTreeItem((MapNode) child);
+            parentItem.add(newChild);
+            System.out.println(((MapTreeItem) parent).getMapNode().getName() + "      parent");
+            System.out.println(((MapNode) child).getName() + "              child");
+            items.add(newChild);
+            treeView.expandPath(treeView.getSelectionPath());
+            SwingUtilities.updateComponentTreeUI(treeView);
+        }
     }
 
 
