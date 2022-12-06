@@ -114,10 +114,12 @@ public class VezaState implements State {
                 }
             }
                 if(!postoji) {
-                    VezaElement vezaElement = new VezaElement(odPojma, doPojma, start, end);
-                    listaVeza.add(vezaElement);
-                    mindMap.addChild(vezaElement);
-                    mindMap.notifyObs(vezaElement, parent);
+                    if(!odPojma.equals(doPojma)) {
+                        VezaElement vezaElement = new VezaElement(odPojma, doPojma, start, end);
+                        listaVeza.add(vezaElement);
+                        mindMap.addChild(vezaElement);
+                        mindMap.notifyObs(vezaElement, parent);
+                    }
                 }
 
         }
