@@ -47,7 +47,7 @@ public class RenameDialog extends JDialog {
 
                 }
                 catch (NumberFormatException exception) {
-                    exception.printStackTrace();
+                    element.setStroke(2);
                 }
 
                 if(!textFieldNaziv.getText().toString().equalsIgnoreCase("")){
