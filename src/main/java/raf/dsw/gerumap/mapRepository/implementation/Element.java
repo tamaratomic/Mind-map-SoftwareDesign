@@ -10,12 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Getter
-@Setter
+
 public class Element extends MapNode {
 
     List<ISubscriber> subscribers;
-    private int stroke = 2;
+    private int stroke;
     private Color color = Color.black;
 
 
@@ -59,5 +58,30 @@ public class Element extends MapNode {
             listener.update(notif, notif2);
         }
 
+    }
+
+    public List<ISubscriber> getSubscribers() {
+        return subscribers;
+    }
+
+    public void setSubscribers(List<ISubscriber> subscribers) {
+        this.subscribers = subscribers;
+    }
+
+    public int getStroke() {
+        return stroke;
+    }
+
+    public void setStroke(int stroke) {
+        this.stroke = stroke;
+        notifyObs(stroke,null);
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }
