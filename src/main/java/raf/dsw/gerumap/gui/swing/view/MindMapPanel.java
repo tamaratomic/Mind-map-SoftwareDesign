@@ -19,6 +19,8 @@ import java.util.List;
 public class MindMapPanel extends JPanel implements ISubscriber {
 
     private MindMap mindMap;
+
+    private MapSelectionModel selectionModel;
     private JPanel panCenter;
 
     private List<ElementPainter> painters;
@@ -33,9 +35,11 @@ public class MindMapPanel extends JPanel implements ISubscriber {
         setProjectPanel(projectPanel);
 
         mapTreeItem = item;
+        this.selectionModel = new MapSelectionModel();
 
         this.panCenter = new JPanel();
         this.mindMap.addSubs(this);
+        this.selectionModel.addSubs(this);
 
         this.painters = new ArrayList<>();
 
@@ -115,7 +119,7 @@ public class MindMapPanel extends JPanel implements ISubscriber {
         }
 
 
-        System.out.println("Repaint");
+        paintSelectionHandles(graphics2D);
     }
 
     public List<ElementPainter> getPainters() {
@@ -151,6 +155,51 @@ public class MindMapPanel extends JPanel implements ISubscriber {
             painters.add(vezaPainter);
             repaint();
         }
+        else if((notif instanceof Element) && (notif2 instanceof String)){
+            repaint();
+        }
 
     }
+
+    public MapSelectionModel getSelectionModel() {
+        return selectionModel;
+    }
+
+    public MouseContoller getMouseContoller() {
+        return mouseContoller;
+    }
+
+    public void setMouseContoller(MouseContoller mouseContoller) {
+        this.mouseContoller = mouseContoller;
+    }
+
+    public void setSelectionModel(MapSelectionModel selectionModel) {
+        this.selectionModel = selectionModel;
+    }
+
+    private void paintSelectionHandles(Graphics2D g2) {
+        Iterator<Element> it=getSelectionModel().getSelectedListIterator();
+        while(it.hasNext()) {
+            Element element = it.next();
+            PojamElement pojamElement = (PojamElement) element;
+            if (element == null) return;
+            // Iscrtavanje pravougaonika sa isprekidanom linijom
+            g2.setStroke(new BasicStroke((float) 1, BasicStroke.CAP_SQUARE,
+                    BasicStroke.JOIN_BEVEL, 1f, new float[]{3f, 6f}, 0));
+            g2.setPaint(Color.BLACK);
+
+            g2.drawRect((int) pojamElement.getWPosition(), (int) pojamElement.getHPosition(),
+                    (int) pojamElement.getXSize(), (int) pojamElement.getYSize());
+
+            // 	Iscrtavanje hendlova
+         /*   for (Handle e : Handle.values()) {
+                paintSelectionHandle(g2, getHandlePoint(slot.getPosition(), slot.getSize(), e));
+                // System.out.println(getHandlePoint(slot.getPosition(), slot.getSize(), e));
+            }*/
+
+        }
+
+    }
+
+
 }
