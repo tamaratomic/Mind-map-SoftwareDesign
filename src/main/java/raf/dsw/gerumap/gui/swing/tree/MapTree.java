@@ -17,6 +17,7 @@ public interface MapTree {
     void setSelectedNode();
     List<MapTreeItem> getItems();
     void refresh();
+    MapTreeItem getItemByName(String name);
 
 
 }

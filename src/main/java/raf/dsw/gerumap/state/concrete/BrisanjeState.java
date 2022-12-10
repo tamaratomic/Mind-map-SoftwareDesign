@@ -4,6 +4,7 @@ import raf.dsw.gerumap.gui.swing.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.painter.VezaPainter;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
+import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.gui.swing.view.MindMapPanel;
 import raf.dsw.gerumap.mapRepository.implementation.Element;
 import raf.dsw.gerumap.mapRepository.implementation.MindMap;
@@ -40,7 +41,8 @@ public class BrisanjeState implements State {
 
                     for (int j = 0; j < painters.size(); j++) {
                         if (painters.get(j).getElement() == selektovani.get(i)) {
-                            mindMap.getChildren().remove(painters.get(j).getElement());
+                         //  mindMap.getChildren().remove(painters.get(j).getElement());
+                            MainFrame.getInstance().getMapTree().deleteChild(MainFrame.getInstance().getMapTree().getItemByName(painters.get(j).getElement().getName()));
                             painters.remove(j);
 
                         }

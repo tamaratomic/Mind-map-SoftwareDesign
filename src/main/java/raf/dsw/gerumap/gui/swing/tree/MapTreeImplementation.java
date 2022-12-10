@@ -24,6 +24,7 @@ import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class MapTreeImplementation implements MapTree, ISubscriber {
@@ -126,6 +127,18 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
     public void refresh() {
 
         SwingUtilities.updateComponentTreeUI(treeView);
+    }
+
+    @Override
+    public MapTreeItem getItemByName(String name) {
+        for(MapTreeItem item: items){
+            if(item.getMapNode().getName().equalsIgnoreCase(name)){
+                return item;
+            }
+        }
+
+
+        return null;
     }
 
 
