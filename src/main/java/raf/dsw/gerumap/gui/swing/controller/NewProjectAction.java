@@ -23,7 +23,6 @@ public class NewProjectAction extends AbstractGerumapAction{
     @Override
     public void actionPerformed(ActionEvent e) {
         MapTreeItem selected = (MapTreeItem) MainFrame.getInstance().getMapTree().getSelectedNode();
-        System.out.println(selected);
         if(selected.getMapNode() instanceof MindMap){
             System.out.println("NE MOZETE DA SE DODA ELEMNT IZ OVOG TOOLBARA");
         }else{

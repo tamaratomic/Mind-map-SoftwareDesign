@@ -4,6 +4,7 @@ import raf.dsw.gerumap.gui.swing.controller.MouseContoller;
 import raf.dsw.gerumap.gui.swing.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.painter.VezaPainter;
+import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.mapRepository.implementation.*;
 import raf.dsw.gerumap.observer.ISubscriber;
@@ -102,9 +103,8 @@ public class MindMapPanel extends JPanel implements ISubscriber {
 
         }*/
 
-        System.out.println(painters.size());
+
         for(ElementPainter painter:painters){
-            System.out.println(painter.getElement().getName());
             painter.draw(graphics2D);
         }
 
@@ -136,7 +136,7 @@ public class MindMapPanel extends JPanel implements ISubscriber {
             String s = (String)notif;
             setName(s);
         }
-        else if(notif instanceof PojamElement){
+        else if((notif instanceof PojamElement) && (notif2 instanceof MapTreeItem)){
             PojamElement element = (PojamElement) notif;
 //            System.out.println(element.getName() + "       mindmappanel");
             painters.add(new PojamPainter(element));
@@ -157,6 +157,10 @@ public class MindMapPanel extends JPanel implements ISubscriber {
         }
         else if((notif instanceof Element) && (notif2 instanceof String)){
             repaint();
+        }
+        else if(notif instanceof Integer){
+            repaint();
+
         }
 
     }

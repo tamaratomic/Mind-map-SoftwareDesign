@@ -23,7 +23,6 @@ public class PojamState implements State {
         MainFrame.getInstance().getMapTree().refresh();
         rd.dispose();
         rd.setVisible(false);
-        System.out.println(pojamElement.getName());
         mindMap.addChild(pojamElement);
         mindMap.notifyObs(pojamElement, parent);
     }

@@ -33,7 +33,6 @@ public class StateManager {
 
     public void setPojamState() {
         currentState = pojamState;
-        System.out.println(currentState);
     }
 
     public void setVezaState(){currentState = vezaStateState;}

@@ -36,6 +36,11 @@ public class MapSelectionModel extends DefaultSingleSelectionModel implements IP
         notifyObs(new Element(), "selekcija");
     }
 
+    public void removeElementFromList(Element element){
+        selected.remove(element);
+        notifyObs(new Element(), "selekcija");
+    }
+
     public List<Element> getSelected() {
         return selected;
     }

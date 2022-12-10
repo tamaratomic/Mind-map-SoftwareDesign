@@ -68,7 +68,7 @@ public class MainFrame extends JFrame implements ISubscriber {
 
 
 
-        System.out.println(AppCore.getInstance().getMapRepository().getProjectExplorer().getName());
+
         JTree projectExplorer = mapTree.generateTree(AppCore.getInstance().getMapRepository().getProjectExplorer());
 
 

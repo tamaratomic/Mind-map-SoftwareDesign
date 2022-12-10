@@ -52,10 +52,9 @@ public class RenameDialog extends JDialog {
 
                 if(!textFieldNaziv.getText().toString().equalsIgnoreCase("")){
                     element.setName(textFieldNaziv.getText());
-                    System.out.println(element.getName());
                     dispose();
                 }else{
-                    System.out.println("UNESITE IME STRINGA");
+
                 }
 
 

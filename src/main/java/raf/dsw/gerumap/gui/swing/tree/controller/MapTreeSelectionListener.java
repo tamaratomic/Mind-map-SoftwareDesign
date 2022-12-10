@@ -12,11 +12,8 @@ public class MapTreeSelectionListener implements TreeSelectionListener {
     public void valueChanged(TreeSelectionEvent e) {
         TreePath path = e.getPath();
         MapTreeItem treeItemSelected = (MapTreeItem)path.getLastPathComponent();
-        System.out.println("Selektovan cvor:"+ treeItemSelected.getMapNode().getName());
-        if(treeItemSelected.getMapNode() instanceof Project){
-            System.out.println("Autor: " + ((Project) treeItemSelected.getMapNode()).getAuthor());
-        }
 
-        System.out.println("getPath: "+e.getPath());
+
+
     }
 }

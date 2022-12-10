@@ -33,10 +33,10 @@ public class SelectState implements State {
 
                 List<ElementPainter> painters = mindMapPanel.getPainters();
 
-                for(ElementPainter painter:painters){
+                for(int i = 0; i < painters.size(); i++){
 
-                    if(painter instanceof PojamPainter){
-                        PojamPainter pojamPainter = (PojamPainter) painter;
+                    if(painters.get(i) instanceof PojamPainter){
+                        PojamPainter pojamPainter = (PojamPainter) painters.get(i);
 
                         if(pojamPainter.elementAt(x, y)){
                             mindMapPanel.getSelectionModel().addToSelectionList(pojamPainter.getElement());

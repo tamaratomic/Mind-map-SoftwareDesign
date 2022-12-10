@@ -136,7 +136,6 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
 
 
         NodeFactory nf = UtilFactory.getFactory(parent);
-        System.out.println(nf);
         MapNode n = nf.getNode(parent, x, y);
 
         return n;
@@ -144,12 +143,10 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
 
     @Override
     public void update(Object child, Object parent) {
-        if((!(parent instanceof Point)) && !(parent == null)) {
+        if((!(parent instanceof Point)) && !(parent == null) && !(parent instanceof Integer)) {
             MapTreeItem parentItem = (MapTreeItem) parent;
             MapTreeItem newChild = new MapTreeItem((MapNode) child);
             parentItem.add(newChild);
-            System.out.println(((MapTreeItem) parent).getMapNode().getName() + "      parent");
-            System.out.println(((MapNode) child).getName() + "              child");
             items.add(newChild);
             treeView.expandPath(treeView.getSelectionPath());
             SwingUtilities.updateComponentTreeUI(treeView);
