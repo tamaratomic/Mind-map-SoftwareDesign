@@ -141,6 +141,39 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
         return null;
     }
 
+    @Override
+    public void deleteChildren(List<Element> children) {
+        if(children == null){
+            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
+            return;
+        }
+
+//        if(selectedItem.getMapNode() instanceof ProjectExplorer){
+//            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.PROJECT_EXPLORER_CANNOT_BE_DELETED);
+//            return;
+//        }
+
+
+        MapTreeItem p = (MapTreeItem) getItemByName(children.get(0).getName()).getParent();
+
+
+        if(p == null){
+            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
+            return;
+        }
+
+        for(Element e : children) {
+            MapTreeItem selectedItem = getItemByName(e.getName());
+            ((MapNodeComposite) p.getMapNode()).removeChild(selectedItem.getMapNode());
+            p.remove(selectedItem);
+          //  setSelectedNode();
+        }
+
+        SwingUtilities.updateComponentTreeUI(treeView);
+
+
+    }
+
 
     private MapNode createChild(MapNode parent, int x, int y) {
 

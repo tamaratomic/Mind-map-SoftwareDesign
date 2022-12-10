@@ -73,7 +73,8 @@ public class BrisanjeState implements State {
                         }
                     }
                     painters.removeAll(painteriDel);
-                    mindMap.getChildren().removeAll(elementiDel);
+                    MainFrame.getInstance().getMapTree().deleteChildren(elementiDel);
+                   // mindMap.getChildren().removeAll(elementiDel);
 
                 }
             }

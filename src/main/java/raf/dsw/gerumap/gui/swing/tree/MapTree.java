@@ -2,6 +2,7 @@ package raf.dsw.gerumap.gui.swing.tree;
 
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.tree.view.MapTreeView;
+import raf.dsw.gerumap.mapRepository.implementation.Element;
 import raf.dsw.gerumap.mapRepository.implementation.ProjectExplorer;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public interface MapTree {
     List<MapTreeItem> getItems();
     void refresh();
     MapTreeItem getItemByName(String name);
+    void deleteChildren(List<Element> children);
 
 
 }

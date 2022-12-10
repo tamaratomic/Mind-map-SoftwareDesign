@@ -1,1 +1,1 @@
-[ERROR][04.12.2022. 12:32:07] Polje za ime ne moze biti prazno
+[ERROR][10.12.2022. 14:33:24] Nista nije selektovano
