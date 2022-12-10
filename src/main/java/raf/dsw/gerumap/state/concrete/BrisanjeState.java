@@ -74,6 +74,7 @@ public class BrisanjeState implements State {
                     }
                     painters.removeAll(painteriDel);
                     MainFrame.getInstance().getMapTree().deleteChildren(elementiDel);
+
                    // mindMap.getChildren().removeAll(elementiDel);
 
                 }

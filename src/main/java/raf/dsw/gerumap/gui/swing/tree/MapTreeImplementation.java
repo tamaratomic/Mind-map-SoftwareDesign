@@ -143,8 +143,17 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
 
     @Override
     public void deleteChildren(List<Element> children) {
+
+        for(Element e: children){
+            System.out.println(e.getName());
+        }
+
         if(children == null){
             AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
+            return;
+        }
+
+        if(children.isEmpty()){
             return;
         }
 
