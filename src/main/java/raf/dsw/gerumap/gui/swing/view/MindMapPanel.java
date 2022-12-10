@@ -162,6 +162,9 @@ public class MindMapPanel extends JPanel implements ISubscriber {
             repaint();
 
         }
+        else if(notif instanceof Color){
+            repaint();
+        }
 
     }
 

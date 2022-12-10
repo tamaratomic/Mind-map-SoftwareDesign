@@ -135,6 +135,8 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
     public void startBrisanjeState(){this.stateManager.setBrisanjeState();}
     public void startSelectState(){this.stateManager.setSelectState();}
 
+    public void startPromenaPojmaState(){this.stateManager.setPromenaPojmaState();}
+
 
     public void misKliknut(int x, int y, MindMap mindMap){
         MapTreeItem parent = null;

@@ -3,10 +3,7 @@ package raf.dsw.gerumap.gui.swing.controller;
 
 import lombok.Getter;
 import lombok.Setter;
-import raf.dsw.gerumap.gui.swing.controller.state.BrisanjeAction;
-import raf.dsw.gerumap.gui.swing.controller.state.PojamAction;
-import raf.dsw.gerumap.gui.swing.controller.state.SelectAction;
-import raf.dsw.gerumap.gui.swing.controller.state.VezaAction;
+import raf.dsw.gerumap.gui.swing.controller.state.*;
 
 @Getter
 @Setter
@@ -23,6 +20,8 @@ public class ActionManager {
     private BrisanjeAction brisanjeAction;
     private SelectAction selectAction;
     private VezaAction vezaAction;
+
+    private PromenaPojmaAction promenaPojmaAction;
 
 
     public ActionManager() {
@@ -41,6 +40,7 @@ public class ActionManager {
         vezaAction = new VezaAction();
         brisanjeAction =  new BrisanjeAction();
         selectAction = new SelectAction();
+        promenaPojmaAction = new PromenaPojmaAction();
 
     }
 

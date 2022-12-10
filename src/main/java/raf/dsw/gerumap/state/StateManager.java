@@ -1,9 +1,6 @@
 package raf.dsw.gerumap.state;
 
-import raf.dsw.gerumap.state.concrete.BrisanjeState;
-import raf.dsw.gerumap.state.concrete.PojamState;
-import raf.dsw.gerumap.state.concrete.SelectState;
-import raf.dsw.gerumap.state.concrete.VezaState;
+import raf.dsw.gerumap.state.concrete.*;
 
 public class StateManager {
 
@@ -12,6 +9,8 @@ public class StateManager {
     private VezaState vezaStateState;
     private BrisanjeState brisanjeState;
     private SelectState selectState;
+
+    private PromenaPojmaState promenaPojmaState;
 
 
 
@@ -24,6 +23,7 @@ public class StateManager {
         vezaStateState = new VezaState();
         brisanjeState = new BrisanjeState();
         selectState = new SelectState();
+        promenaPojmaState = new PromenaPojmaState();
         currentState = pojamState;
     }
 
@@ -40,5 +40,7 @@ public class StateManager {
     public void setBrisanjeState(){currentState = brisanjeState;}
 
     public void setSelectState(){currentState = selectState;}
+
+    public void setPromenaPojmaState(){currentState = promenaPojmaState;}
 
 }

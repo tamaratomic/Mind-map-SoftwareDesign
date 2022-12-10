@@ -15,7 +15,7 @@ public class Element extends MapNode {
 
     List<ISubscriber> subscribers;
     private int stroke;
-    private Color color = Color.black;
+    private Color color;
 
 
     public Element(){
@@ -83,5 +83,6 @@ public class Element extends MapNode {
 
     public void setColor(Color color) {
         this.color = color;
+        notifyObs(color,null);
     }
 }

@@ -10,7 +10,7 @@ import java.awt.geom.Ellipse2D;
 
 public class PojamPainter extends ElementPainter{
 
-    protected Paint paint = Color.CYAN;
+
 
     private Shape shape;
 
@@ -21,7 +21,14 @@ public class PojamPainter extends ElementPainter{
 
     @Override
     public void draw(Graphics2D g) {
-        g.setPaint(paint);
+        PojamElement element = (PojamElement) getElement();
+
+        if(element.getColor() == null){
+            g.setPaint(Color.cyan);
+        }else{
+            g.setPaint(element.getColor());
+        }
+
 
         g.setStroke(new BasicStroke(getElement().getStroke()));
         g.draw(getShape());
@@ -30,7 +37,7 @@ public class PojamPainter extends ElementPainter{
 
         g.fill(getShape());
 
-        PojamElement element = (PojamElement) getElement();
+
 
         g.setColor(Color.black);
         g.drawOval(element.getWPosition(),element.getHPosition(),element.getXSize(), element.getYSize());
