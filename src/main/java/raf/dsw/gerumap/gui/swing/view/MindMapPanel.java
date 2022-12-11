@@ -12,6 +12,7 @@ import raf.dsw.gerumap.observer.ISubscriber;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -29,6 +30,8 @@ public class MindMapPanel extends JPanel implements ISubscriber {
 
     private ProjectPanel projectPanel;
     private MapTreeItem mapTreeItem;
+
+    private Rectangle2D selectionRectangle = null;
 
     public MindMapPanel(MapTreeItem item, MindMap mindMap, ProjectPanel projectPanel){
         setMindMap(mindMap);
@@ -134,6 +137,7 @@ public class MindMapPanel extends JPanel implements ISubscriber {
 
 
         paintSelectionHandles(graphics2D);
+        paintLasso(graphics2D);
     }
 
     public List<ElementPainter> getPainters() {
@@ -179,6 +183,9 @@ public class MindMapPanel extends JPanel implements ISubscriber {
         else if(notif instanceof Color){
             repaint();
         }
+        else if(notif instanceof Rectangle2D){
+            repaint();
+        }
 
     }
 
@@ -196,6 +203,15 @@ public class MindMapPanel extends JPanel implements ISubscriber {
 
     public void setSelectionModel(MapSelectionModel selectionModel) {
         this.selectionModel = selectionModel;
+    }
+
+    public Rectangle2D getSelectionRectangle() {
+        return selectionRectangle;
+    }
+
+    public void setSelectionRectangle(Rectangle2D selectionRectangle) {
+        this.selectionRectangle = selectionRectangle;
+        mindMap.notifyObs(selectionRectangle,null);
     }
 
     private void paintSelectionHandles(Graphics2D g2) {
@@ -220,6 +236,18 @@ public class MindMapPanel extends JPanel implements ISubscriber {
 
         }
 
+    }
+
+    private void paintLasso(Graphics2D g2){
+        if(getSelectionRectangle()!=null){
+            Rectangle2D rec=getSelectionRectangle();
+            g2.setStroke(new BasicStroke((float) 1, BasicStroke.CAP_SQUARE,
+                    BasicStroke.JOIN_BEVEL, 1f, new float[]{3f, 6f}, 0));
+            g2.setPaint(Color.BLACK);
+
+            g2.drawRect((int)  rec.getBounds2D().getX(), (int) rec.getBounds2D().getY(),
+                    (int) rec.getBounds().getWidth(), (int) rec.getBounds().getHeight());
+        }
     }
 
 
