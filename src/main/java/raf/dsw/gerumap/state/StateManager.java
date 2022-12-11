@@ -10,6 +10,8 @@ public class StateManager {
     private BrisanjeState brisanjeState;
     private SelectState selectState;
 
+    private MoveElementState moveElementState;
+
     private PromenaPojmaState promenaPojmaState;
 
 
@@ -24,6 +26,7 @@ public class StateManager {
         brisanjeState = new BrisanjeState();
         selectState = new SelectState();
         promenaPojmaState = new PromenaPojmaState();
+        moveElementState = new MoveElementState();
         currentState = pojamState;
     }
 
@@ -42,5 +45,7 @@ public class StateManager {
     public void setSelectState(){currentState = selectState;}
 
     public void setPromenaPojmaState(){currentState = promenaPojmaState;}
+
+    public void setMoveElementState(){currentState = moveElementState;}
 
 }

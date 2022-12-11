@@ -65,14 +65,12 @@ public class MindMapPanel extends JPanel implements ISubscriber {
 
 
         if(!mindMap.getChildren().isEmpty()){
-            System.out.println("ima dece");
             for(MapNode e : mindMap.getChildren()){
                 if(e instanceof PojamElement){
                     painters.add(new PojamPainter((PojamElement)e));
                 }else if(e instanceof VezaElement){
                     painters.add(new VezaPainter((VezaElement)e));
                 }
-                System.out.println(e.getName());
                 repaint();
 
             }

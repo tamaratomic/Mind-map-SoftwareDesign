@@ -21,6 +21,8 @@ public class ActionManager {
     private SelectAction selectAction;
     private VezaAction vezaAction;
 
+    private MoveElementAction moveElementAction;
+
     private PromenaPojmaAction promenaPojmaAction;
 
 
@@ -41,6 +43,7 @@ public class ActionManager {
         brisanjeAction =  new BrisanjeAction();
         selectAction = new SelectAction();
         promenaPojmaAction = new PromenaPojmaAction();
+        moveElementAction = new MoveElementAction();
 
     }
 

@@ -79,10 +79,10 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
     public void deleteChild(MapTreeItem selectedItem) {
 
 
-        System.out.println("BRISE SE   " + selectedItem.getMapNode().getName());
+
 
         if(selectedItem == null){
-            System.out.println("u null-u");
+
             AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
             return;
         }
@@ -106,7 +106,7 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
         p.remove(selectedItem);
         setSelectedNode();
 
-        System.out.println("izbrisan");
+
         SwingUtilities.updateComponentTreeUI(treeView);
 
 
@@ -153,13 +153,13 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
 //            System.out.println(e.getName());
 //        }
 
-        System.out.println("u deletechildren pre null");
+
 
 //        if(children == null){
 //            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
 //            return;
 //        }
-        System.out.println("u deletechildren posle null");
+
 
         if(children.isEmpty()){
             System.out.println("children is empty");

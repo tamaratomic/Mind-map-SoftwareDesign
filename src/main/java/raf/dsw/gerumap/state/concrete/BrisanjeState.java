@@ -57,9 +57,7 @@ public class BrisanjeState implements State {
 
                     for (int j = 0; j < painters.size(); j++) {
 
-                        System.out.println(painters.get(j).getElement().getName());
                         if(painters.get(j) instanceof VezaPainter){
-                            System.out.println("U IFU BRISANEJ STATE");
                             VezaPainter vezaPainter = (VezaPainter) painters.get(j);
                             VezaElement vezaElement = (VezaElement)vezaPainter.getElement();
 
@@ -71,7 +69,7 @@ public class BrisanjeState implements State {
                             if(!(mindMap.getChildren().contains(odPojma) && mindMap.getChildren().contains(doPojma))){
                                 painteriDel.add(vezaPainter);
                                 elementiDel.add(vezaElement);
-                                System.out.println("dodata veza   " + vezaElement.getName());
+
 
                             }
                         }
@@ -81,9 +79,6 @@ public class BrisanjeState implements State {
 //                    for (Element ve:elementiDel){
 //                        System.out.println(ve.getName());
 //                    }
-                        if (elementiDel.isEmpty()) {
-                            System.out.println("pojam nema vezza");
-                        }
                         MainFrame.getInstance().getMapTree().deleteChildren(elementiDel);
 
                         // mindMap.getChildren().removeAll(elementiDel);
