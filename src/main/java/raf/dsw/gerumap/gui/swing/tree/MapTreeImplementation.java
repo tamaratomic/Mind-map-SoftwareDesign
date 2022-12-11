@@ -78,7 +78,11 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
     @Override
     public void deleteChild(MapTreeItem selectedItem) {
 
+
+        System.out.println("BRISE SE   " + selectedItem.getMapNode().getName());
+
         if(selectedItem == null){
+            System.out.println("u null-u");
             AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
             return;
         }
@@ -102,6 +106,7 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
         p.remove(selectedItem);
         setSelectedNode();
 
+        System.out.println("izbrisan");
         SwingUtilities.updateComponentTreeUI(treeView);
 
 
@@ -144,16 +149,20 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
     @Override
     public void deleteChildren(List<Element> children) {
 
-        for(Element e: children){
-            System.out.println(e.getName());
-        }
+//        for(Element e: children){
+//            System.out.println(e.getName());
+//        }
 
-        if(children == null){
-            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
-            return;
-        }
+        System.out.println("u deletechildren pre null");
+
+//        if(children == null){
+//            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
+//            return;
+//        }
+        System.out.println("u deletechildren posle null");
 
         if(children.isEmpty()){
+            System.out.println("children is empty");
             return;
         }
 
@@ -162,8 +171,15 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
 //            return;
 //        }
 
+        int m = -1;
+        for(int i = 0; i < children.size(); i++){
+            if(!(children.get(i) == null)){
+                m = i;
+                break;
+            }
+        }
+        MapTreeItem p = (MapTreeItem) getItemByName(children.get(m).getName()).getParent();
 
-        MapTreeItem p = (MapTreeItem) getItemByName(children.get(0).getName()).getParent();
 
 
         if(p == null){
@@ -181,6 +197,11 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
         SwingUtilities.updateComponentTreeUI(treeView);
 
 
+    }
+
+    @Override
+    public void setSelectedItem(MapTreeItem item) {
+       // treeView.setSelectionPath(item.getPath());
     }
 
 

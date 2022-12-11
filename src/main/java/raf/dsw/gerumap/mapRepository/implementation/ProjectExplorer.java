@@ -1,12 +1,13 @@
 package raf.dsw.gerumap.mapRepository.implementation;
 
+import lombok.Getter;
 import raf.dsw.gerumap.mapRepository.node.MapNode;
 import raf.dsw.gerumap.mapRepository.node.MapNodeComposite;
 import raf.dsw.gerumap.observer.ISubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Getter
 public class ProjectExplorer extends MapNodeComposite {
 
     List<ISubscriber> subscribers;

@@ -1,5 +1,6 @@
 package raf.dsw.gerumap.mapRepository.implementation;
 
+import lombok.Getter;
 import raf.dsw.gerumap.mapRepository.node.MapNode;
 import raf.dsw.gerumap.mapRepository.node.MapNodeComposite;
 import raf.dsw.gerumap.observer.ISubscriber;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Getter
 public class Project extends MapNodeComposite {
 
 
@@ -44,9 +46,9 @@ public class Project extends MapNodeComposite {
     }
 
 
-    public String getAuthor() {
-        return author;
-    }
+ //   public String getAuthor() {
+//        return author;
+//    }
 
     public void setAuthor(String author) {
         this.author = author;

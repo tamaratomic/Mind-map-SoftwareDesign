@@ -1,7 +1,9 @@
 package raf.dsw.gerumap.gui.swing.tree.controller;
 
+import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.gui.swing.view.MainFrame;
 import raf.dsw.gerumap.gui.swing.view.ProjectPanel;
+import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.mapRepository.implementation.Project;
 import raf.dsw.gerumap.mapRepository.node.MapNode;
 
@@ -20,11 +22,18 @@ public class MouseListenerController implements MouseListener {
 
 
 
-                // MainFrame.getInstance().update(null);
+                // MainFrame.getInstance().update(null)
+            MapTreeItem item = MainFrame.getInstance().getMapTree().getSelectedNode();
 
 
-
-                MainFrame.getInstance().setDesktop(MainFrame.getInstance().getMapTree().getSelectedNode());
+                MainFrame.getInstance().setDesktop(item);
+                if(item.getChildCount() > 0){
+                    for(int i = 0; i < item.getChildCount(); i++){
+                        if(item.getChildAt(i) != null){
+                            MainFrame.getInstance().getMapTree().setSelectedNode();
+                        }
+                    }
+                }
                // MainFrame.getInstance().update((Project) MainFrame.getInstance().getTree().getSelectedNode());
 
 

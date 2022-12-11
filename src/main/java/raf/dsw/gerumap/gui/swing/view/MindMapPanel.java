@@ -4,15 +4,14 @@ import raf.dsw.gerumap.gui.swing.controller.MouseContoller;
 import raf.dsw.gerumap.gui.swing.painter.ElementPainter;
 import raf.dsw.gerumap.gui.swing.painter.PojamPainter;
 import raf.dsw.gerumap.gui.swing.painter.VezaPainter;
-import raf.dsw.gerumap.gui.swing.tree.MapTree;
 import raf.dsw.gerumap.gui.swing.tree.model.MapTreeItem;
 import raf.dsw.gerumap.mapRepository.implementation.*;
+import raf.dsw.gerumap.mapRepository.node.MapNode;
 import raf.dsw.gerumap.observer.ISubscriber;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -39,7 +38,9 @@ public class MindMapPanel extends JPanel implements ISubscriber {
         this.selectionModel = new MapSelectionModel();
 
         this.panCenter = new JPanel();
-        this.mindMap.addSubs(this);
+        if(!mindMap.getSubscribers().contains(this)) {
+            this.mindMap.addSubs(this);
+        }
         this.selectionModel.addSubs(this);
 
         this.painters = new ArrayList<>();
@@ -61,6 +62,21 @@ public class MindMapPanel extends JPanel implements ISubscriber {
 
         panCenter.addMouseListener(mouseContoller);
         panCenter.addMouseMotionListener(mouseContoller);
+
+
+        if(!mindMap.getChildren().isEmpty()){
+            System.out.println("ima dece");
+            for(MapNode e : mindMap.getChildren()){
+                if(e instanceof PojamElement){
+                    painters.add(new PojamPainter((PojamElement)e));
+                }else if(e instanceof VezaElement){
+                    painters.add(new VezaPainter((VezaElement)e));
+                }
+                System.out.println(e.getName());
+                repaint();
+
+            }
+        }
 
     }
 
