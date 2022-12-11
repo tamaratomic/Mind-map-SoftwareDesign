@@ -20,6 +20,7 @@ public interface MapTree {
     void refresh();
     MapTreeItem getItemByName(String name);
     void deleteChildren(List<Element> children);
+    void setSelectedItem(MapTreeItem item);
 
 
 }

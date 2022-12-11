@@ -96,6 +96,10 @@ public class MainFrame extends JFrame implements ISubscriber {
         int high = desktop.getHeight();
         int width = desktop.getWidth();
         projectPanel = new ProjectPanel(item, high, width);
+        Project p = (Project) getMapTree().getSelectedNode().getMapNode();
+//        if(!p.getSubscribers().contains(projectPanel)){
+//            this.getMapTree().getSelectedNode().getMapNode().addSubs(projectPanel);
+//        }
         this.getMapTree().getSelectedNode().getMapNode().addSubs(projectPanel);
         this.desktop.add(projectPanel);
        // this.desktop.add(new ProjectPanel(item, 800, 1030));

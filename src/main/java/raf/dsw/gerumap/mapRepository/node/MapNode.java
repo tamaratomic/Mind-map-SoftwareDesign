@@ -5,6 +5,7 @@ import lombok.Setter;
 import raf.dsw.gerumap.AppCore;
 import raf.dsw.gerumap.messageGenerator.EventType;
 import raf.dsw.gerumap.observer.IPublisher;
+import raf.dsw.gerumap.observer.ISubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
