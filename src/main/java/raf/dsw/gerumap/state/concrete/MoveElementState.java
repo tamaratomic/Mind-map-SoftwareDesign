@@ -20,24 +20,38 @@ public class MoveElementState implements State {
 
     boolean pogodjenPojam = false;
 
+    Point startnaTacka = new Point();
+
     private PojamElement element;
     private List<ElementPainter> painters = new ArrayList<>();
+
+    private List<Element> selektovani = new ArrayList<>();
+
+    private List<Point> startSelektovanih = new ArrayList<>();
+
+
 
     @Override
     public void mousePressed(int x, int y, MindMap mindMap, MapTreeItem parent) {
         List<ISubscriber> listaSubova = mindMap.getSubscribers();
+        startnaTacka = new Point(x,y);
+        startSelektovanih.clear();
 
         for (ISubscriber subscriber : listaSubova) {
 
             if (subscriber instanceof MindMapPanel) {
                 MindMapPanel mindMapPanel = (MindMapPanel) subscriber;
 
-                List<Element> selektovani = mindMapPanel.getSelectionModel().getSelected();
+                selektovani = mindMapPanel.getSelectionModel().getSelected();
                 painters = mindMapPanel.getPainters();
 
 
                 for (int i = 0; i < selektovani.size(); i++) {
+                    if(selektovani.get(i) instanceof PojamElement){
+                        PojamElement elementSelektovani = (PojamElement) selektovani.get(i);
 
+                        startSelektovanih.add(new Point(elementSelektovani.getWPosition(),elementSelektovani.getHPosition()));
+                    }
 
                     for (int j = 0; j < painters.size(); j++) {
                         if (painters.get(j).getElement() == selektovani.get(i)) {
@@ -57,7 +71,7 @@ public class MoveElementState implements State {
 
     @Override
     public void mouseDragged(int x, int y, MindMap mindMap) {
-        if(pogodjenPojam){
+        if(pogodjenPojam && (selektovani.size()==1)){
 
             for(ElementPainter painter:painters){
                 if(painter instanceof VezaPainter){
@@ -76,6 +90,42 @@ public class MoveElementState implements State {
             element.setWPosition(x);
             element.setHPosition(y);
             mindMap.notifyObs(4,null);
+        }
+
+        else if(selektovani.size() > 1){
+            int razlikaX =(int) (x- startnaTacka.getX());
+            int razlikaY =(int) (y -startnaTacka.getY());
+
+
+            for(int i = 0; i < selektovani.size(); i++){
+                PojamElement pojamElement = (PojamElement) selektovani.get(i);
+                pojamElement.setWPosition(startSelektovanih.get(i).x + razlikaX);
+                pojamElement.setHPosition(startSelektovanih.get(i).y + razlikaY);
+                mindMap.notifyObs(4,null);
+            }
+
+            for(ElementPainter painter:painters){
+                if(painter instanceof VezaPainter){
+                    VezaPainter vezaPainter = (VezaPainter) painter;
+                    VezaElement vezaElement =(VezaElement) vezaPainter.getElement();
+
+                    for(int i = 0; i < selektovani.size(); i++){
+
+                        PojamElement pojamElement = (PojamElement) selektovani.get(i);
+
+                        if(vezaElement.getOdPojma().equals(pojamElement)){
+                            vezaElement.setStart(new Point(pojamElement.getWPosition() + (pojamElement.getXSize()/2),pojamElement.getHPosition() + (pojamElement.getYSize()/2)));
+                        }
+                        else if(vezaElement.getDoPojma().equals(pojamElement)){
+                            vezaElement.setEnd(new Point(pojamElement.getWPosition() + (pojamElement.getXSize()/2),pojamElement.getHPosition() +(pojamElement.getYSize()/2)));
+                        }
+                        mindMap.notifyObs(4,null);
+                    }
+
+                }
+
+            }
+
         }
     }
 
