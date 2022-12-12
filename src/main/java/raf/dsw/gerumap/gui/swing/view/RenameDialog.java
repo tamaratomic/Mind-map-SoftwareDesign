@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Field;
+import java.util.List;
 
 public class RenameDialog extends JDialog {
 
@@ -114,7 +115,7 @@ public class RenameDialog extends JDialog {
 
     }
 
-    public RenameDialog(ElementPainter painter){
+    public RenameDialog(List<ElementPainter> painteriZaPromenu){
         setTitle("Edit Pojam");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -148,30 +149,31 @@ public class RenameDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                try {
-                    int debljinaLinije = Integer.parseInt(textFieldLinija.getText());
-                    painter.getElement().setStroke(debljinaLinije);
+                for (ElementPainter painter : painteriZaPromenu) {
+                    try {
+                        int debljinaLinije = Integer.parseInt(textFieldLinija.getText());
+                        painter.getElement().setStroke(debljinaLinije);
+
+                    } catch (NumberFormatException exception) {
+                        painter.getElement().setStroke(2);
+                    }
+
+                    if (!textFieldNaziv.getText().toString().equalsIgnoreCase("")) {
+                        painter.getElement().setName(textFieldNaziv.getText());
+                        dispose();
+                    } else {
+
+                    }
+                    Color color;
+                    try {
+                        Field field = Class.forName("java.awt.Color").getField(textFieldBoja.getText());
+                        color = (Color) field.get(null);
+                        painter.getElement().setColor(color);
+                    } catch (Exception exception) {
+                        color = null; // Not defined
+                    }
 
                 }
-                catch (NumberFormatException exception) {
-                    painter.getElement().setStroke(2);
-                }
-
-                if(!textFieldNaziv.getText().toString().equalsIgnoreCase("")){
-                    painter.getElement().setName(textFieldNaziv.getText());
-                    dispose();
-                }else{
-
-                }
-                Color color;
-                try {
-                    Field field = Class.forName("java.awt.Color").getField(textFieldBoja.getText());
-                    color = (Color)field.get(null);
-                    painter.getElement().setColor(color);
-                } catch (Exception exception) {
-                    color = null; // Not defined
-                }
-
             }
         });
 

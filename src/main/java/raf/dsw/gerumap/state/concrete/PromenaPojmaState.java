@@ -9,6 +9,7 @@ import raf.dsw.gerumap.mapRepository.implementation.MindMap;
 import raf.dsw.gerumap.observer.ISubscriber;
 import raf.dsw.gerumap.state.State;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PromenaPojmaState implements State {
@@ -24,16 +25,20 @@ public class PromenaPojmaState implements State {
                 List<Element> selektovani = mindMapPanel.getSelectionModel().getSelected();
                 List<ElementPainter> painters = mindMapPanel.getPainters();
 
+                List<ElementPainter> painteriZaPromenu = new ArrayList<>();
+
                 for (int i = 0; i < selektovani.size(); i++) {
 
 
                     for (int j = 0; j < painters.size(); j++) {
                         if (painters.get(j).getElement() == selektovani.get(i)) {
-                            RenameDialog rd = new RenameDialog(painters.get(j));
-                            mindMap.notifyObs(5,null);
+                            painteriZaPromenu.add(painters.get(j));
                         }
                     }
                 }
+
+                RenameDialog rd = new RenameDialog(painteriZaPromenu);
+                mindMap.notifyObs(5,null);
            }
         }
     }
