@@ -104,6 +104,7 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
         p.getMapNode().notifyObs(selectedItem.getMapNode(), null);
         ((MapNodeComposite)p.getMapNode()).removeChild(selectedItem.getMapNode());
         p.remove(selectedItem);
+        items.remove(selectedItem);
         setSelectedNode();
 
 
@@ -149,27 +150,10 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
     @Override
     public void deleteChildren(List<Element> children) {
 
-//        for(Element e: children){
-//            System.out.println(e.getName());
-//        }
-
-
-
-//        if(children == null){
-//            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
-//            return;
-//        }
-
-
         if(children.isEmpty()){
             System.out.println("children is empty");
             return;
         }
-
-//        if(selectedItem.getMapNode() instanceof ProjectExplorer){
-//            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.PROJECT_EXPLORER_CANNOT_BE_DELETED);
-//            return;
-//        }
 
         int m = -1;
         for(int i = 0; i < children.size(); i++){
@@ -178,19 +162,25 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
                 break;
             }
         }
-        MapTreeItem p = (MapTreeItem) getItemByName(children.get(m).getName()).getParent();
+      //  System.out.println(((MapTreeItem) getItemByName(children.get(m).getName())).getMapNode().getName());
 
+        MapTreeItem p = (MapTreeItem) getItemByName(children.get(m).getName()).getParent();
+    //    System.out.println("parent    " + p.getMapNode().getName());
 
 
         if(p == null){
+            System.out.println("parent is null");
+//            System.out.println(children.get(m) + "   " + m);
             //AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
             return;
         }
+      //  System.out.println("parent  " + p.getMapNode().getName());
 
         for(Element e : children) {
             MapTreeItem selectedItem = getItemByName(e.getName());
             ((MapNodeComposite) p.getMapNode()).removeChild(selectedItem.getMapNode());
             p.remove(selectedItem);
+            items.remove(selectedItem);
           //  setSelectedNode();
         }
 
@@ -199,10 +189,6 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
 
     }
 
-    @Override
-    public void setSelectedItem(MapTreeItem item) {
-       // treeView.setSelectionPath(item.getPath());
-    }
 
 
     private MapNode createChild(MapNode parent, int x, int y) {

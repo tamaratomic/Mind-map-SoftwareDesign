@@ -26,7 +26,8 @@ public class BrisanjeState implements State {
     @Override
     public void mousePressed(int x, int y, MindMap mindMap,  MapTreeItem parent) {
 
-
+        elementiDel.clear();
+        painteriDel.clear();
         List<ISubscriber> listaSubova = mindMap.getSubscribers();
 
         for (ISubscriber subscriber : listaSubova) {
@@ -44,9 +45,6 @@ public class BrisanjeState implements State {
 
                     for (int j = 0; j < painters.size(); j++) {
                         if (painters.get(j).getElement() == selektovani.get(i)) {
-                            //  mindMap.getChildren().remove(painters.get(j).getElement());
-                            //     System.out.println(painters.get(j).getElement().getName() + "          name pejntera");
-                            //MainFrame.getInstance().getMapTree().deleteChild(MainFrame.getInstance().getMapTree().getItemByName(painters.get(j).getElement().getName()));
                             painteriDel.add(painters.get(j));
                             elementiDel.add(painters.get(j).getElement());
 
@@ -77,15 +75,17 @@ public class BrisanjeState implements State {
                             }
                         }
                     }
-                    if(!elementiDel.isEmpty()) {
-                        painters.removeAll(painteriDel);
+
+                    painters.removeAll(painteriDel);
 //                    for (Element ve:elementiDel){
 //                        System.out.println(ve.getName());
 //                    }
-                        MainFrame.getInstance().getMapTree().deleteChildren(elementiDel);
 
-                        // mindMap.getChildren().removeAll(elementiDel);
-                    }
+                if(!elementiDel.isEmpty()){
+     //               System.out.println("brisem elementedel");
+                    MainFrame.getInstance().getMapTree().deleteChildren(elementiDel);
+                }
+
 
 
                 mindMapPanel.getSelectionModel().removeAllElementsFromList(selektovani);
