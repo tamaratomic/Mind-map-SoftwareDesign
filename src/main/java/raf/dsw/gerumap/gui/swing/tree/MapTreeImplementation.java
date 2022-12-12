@@ -183,7 +183,7 @@ public class MapTreeImplementation implements MapTree, ISubscriber {
 
 
         if(p == null){
-            AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
+            //AppCore.getInstance().getMessageGenerator().generateMessage(EventType.NOTHING_SELECTED);
             return;
         }
 

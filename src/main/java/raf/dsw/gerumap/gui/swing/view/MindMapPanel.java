@@ -178,7 +178,6 @@ public class MindMapPanel extends JPanel implements ISubscriber {
         }
         else if(notif instanceof Integer){
             repaint();
-
         }
         else if(notif instanceof Color){
             repaint();

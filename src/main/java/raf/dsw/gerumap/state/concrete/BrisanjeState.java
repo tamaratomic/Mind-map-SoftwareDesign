@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BrisanjeState implements State {
+
+    List<ElementPainter> painteriDel = new ArrayList<>();
+    List<Element>elementiDel = new ArrayList<>();
     @Override
     public void mousePressed(int x, int y, MindMap mindMap,  MapTreeItem parent) {
 
@@ -41,19 +44,19 @@ public class BrisanjeState implements State {
 
                     for (int j = 0; j < painters.size(); j++) {
                         if (painters.get(j).getElement() == selektovani.get(i)) {
-                         //  mindMap.getChildren().remove(painters.get(j).getElement());
-                       //     System.out.println(painters.get(j).getElement().getName() + "          name pejntera");
-                            MainFrame.getInstance().getMapTree().deleteChild(MainFrame.getInstance().getMapTree().getItemByName(painters.get(j).getElement().getName()));
-                            painters.remove(j);
+                            //  mindMap.getChildren().remove(painters.get(j).getElement());
+                            //     System.out.println(painters.get(j).getElement().getName() + "          name pejntera");
+                            //MainFrame.getInstance().getMapTree().deleteChild(MainFrame.getInstance().getMapTree().getItemByName(painters.get(j).getElement().getName()));
+                            painteriDel.add(painters.get(j));
+                            elementiDel.add(painters.get(j).getElement());
 
                         }
                     }
-                  //mindMap.notifyObs(2,null);
-                    mindMapPanel.getSelectionModel().removeElementFromList(selektovani.get(0));
+                    //mindMap.notifyObs(2,null);
+                }
 
 
-                    List<ElementPainter> painteriDel = new ArrayList<>();
-                    List<Element>elementiDel = new ArrayList<>();
+
 
                     for (int j = 0; j < painters.size(); j++) {
 
@@ -66,7 +69,7 @@ public class BrisanjeState implements State {
                             PojamElement doPojma = vezaElement.getDoPojma();
 
 
-                            if(!(mindMap.getChildren().contains(odPojma) && mindMap.getChildren().contains(doPojma))){
+                            if(elementiDel.contains(odPojma) || elementiDel.contains(doPojma)){
                                 painteriDel.add(vezaPainter);
                                 elementiDel.add(vezaElement);
 
@@ -83,7 +86,9 @@ public class BrisanjeState implements State {
 
                         // mindMap.getChildren().removeAll(elementiDel);
                     }
-                }
+
+
+                mindMapPanel.getSelectionModel().removeAllElementsFromList(selektovani);
             }
 
         }
