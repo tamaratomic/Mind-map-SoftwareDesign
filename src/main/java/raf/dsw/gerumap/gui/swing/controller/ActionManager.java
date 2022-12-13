@@ -20,6 +20,8 @@ public class ActionManager {
     private BrisanjeAction brisanjeAction;
     private SelectAction selectAction;
     private VezaAction vezaAction;
+    private ZoomInAction zoomInAction;
+    private ZoomOutAction zoomOutAction;
 
     private MoveElementAction moveElementAction;
 
@@ -44,6 +46,8 @@ public class ActionManager {
         selectAction = new SelectAction();
         promenaPojmaAction = new PromenaPojmaAction();
         moveElementAction = new MoveElementAction();
+        zoomInAction = new ZoomInAction();
+        zoomOutAction = new ZoomOutAction();
 
     }
 

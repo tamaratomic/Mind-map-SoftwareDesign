@@ -10,6 +10,8 @@ import raf.dsw.gerumap.state.StateManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
@@ -21,6 +23,8 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
     private JLabel author;
     private StateManager stateManager;
     private StateToolbar stateToolbar;
+
+    private List<MindMapPanel> mindMapPanelList = new ArrayList<MindMapPanel>();
 
     private Project project;
 
@@ -82,7 +86,9 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
     public void addTabToTabbedPane(MapTreeItem item){
         MapNodeComposite project = (MapNodeComposite) item.getMapNode();
         for(MapNode child: project.getChildren()){
-            tabbedPane.addTab(child.getName(), new MindMapPanel(item,(MindMap) child, this));
+            MindMapPanel mmp = new MindMapPanel(item,(MindMap) child, this);
+            mindMapPanelList.add(mmp);
+            tabbedPane.addTab(child.getName(), mmp);
         }
     }
 
@@ -94,9 +100,13 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
            if(tabbedPane.getTabCount() == ((MapNodeComposite)mapTreeItem.getMapNode()).getChildren().size()){
 
-               tabbedPane.remove(((MapNodeComposite) mapTreeItem.getMapNode()).getChildren().indexOf((MindMap) notif));
+               int i = ((MapNodeComposite) mapTreeItem.getMapNode()).getChildren().indexOf((MindMap) notif);
+               tabbedPane.remove(i);
+               mindMapPanelList.remove(i);
            }else{
-               tabbedPane.addTab(((MindMap) notif).getName(), new MindMapPanel(new MapTreeItem((MapNode) notif),(MindMap)notif, this));
+               MindMapPanel mmp = new MindMapPanel(new MapTreeItem((MapNode) notif),(MindMap)notif, this);
+               tabbedPane.addTab(((MindMap) notif).getName(), mmp);
+                mindMapPanelList.add(mmp);
            }
 
 
@@ -164,6 +174,9 @@ public class ProjectPanel extends JInternalFrame implements ISubscriber {
 
     }
 
-
+    public MindMapPanel getActivPanel(){
+        int i = tabbedPane.getSelectedIndex();
+        return mindMapPanelList.get(i);
+    }
 
 }

@@ -14,6 +14,8 @@ public class StateToolbar extends JToolBar {
         add(MainFrame.getInstance().getActionManager().getPromenaPojmaAction());
         add(MainFrame.getInstance().getActionManager().getMoveElementAction());
         add(MainFrame.getInstance().getActionManager().getBrisanjeAction());
+        add(MainFrame.getInstance().getActionManager().getZoomInAction());
+        add(MainFrame.getInstance().getActionManager().getZoomOutAction());
 
     }
 }

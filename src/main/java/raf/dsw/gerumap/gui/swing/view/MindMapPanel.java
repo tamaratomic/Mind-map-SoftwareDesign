@@ -12,6 +12,7 @@ import raf.dsw.gerumap.observer.ISubscriber;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,6 +33,19 @@ public class MindMapPanel extends JPanel implements ISubscriber {
     private MapTreeItem mapTreeItem;
 
     private Rectangle2D selectionRectangle = null;
+
+    private AffineTransform transform = new AffineTransform();
+    private double translateX = 0;
+    private double translateY = 0;
+    private double scaling = 1;
+    final public static double scalingFactor = 1.2;
+    final public static double translateFactor = 10;
+
+
+
+
+
+
 
     public MindMapPanel(MapTreeItem item, MindMap mindMap, ProjectPanel projectPanel){
         setMindMap(mindMap);
@@ -81,6 +95,10 @@ public class MindMapPanel extends JPanel implements ISubscriber {
 
     }
 
+
+
+
+
     public MindMap getMindMap() {
         return mindMap;
     }
@@ -98,8 +116,11 @@ public class MindMapPanel extends JPanel implements ISubscriber {
         this.projectPanel = projectPanel;
     }
 
+
+
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
 
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.setFont(new Font("TimesRoman", Font.PLAIN, 20));
@@ -119,6 +140,13 @@ public class MindMapPanel extends JPanel implements ISubscriber {
             }
 
         }*/
+        graphics2D.transform(transform);
+
+//        if(zoom){
+//
+//            graphics2D.transform(transform);
+//            zoom = false;
+//        }
 
 
         for(ElementPainter painter:painters){
@@ -147,6 +175,9 @@ public class MindMapPanel extends JPanel implements ISubscriber {
     public void setPainters(List<ElementPainter> painters) {
         this.painters = painters;
     }
+
+
+
 
     @Override
     public void update(Object notif, Object notif2) {
@@ -187,6 +218,8 @@ public class MindMapPanel extends JPanel implements ISubscriber {
         }
 
     }
+
+
 
     public MapSelectionModel getSelectionModel() {
         return selectionModel;
@@ -248,6 +281,70 @@ public class MindMapPanel extends JPanel implements ISubscriber {
                     (int) rec.getBounds().getWidth(), (int) rec.getBounds().getHeight());
         }
     }
+
+    private  double x = this.getX();
+    private   double y = this.getY();
+    public void setTransform() {
+
+     //   System.out.println("u transofrmu");
+
+
+
+        translateX = (scaling) * (translateX) + (1 - scaling) * x;
+        translateY = (scaling) * (translateX) + (1 - scaling) * y;
+
+        transform.translate(translateX, translateY);
+        transform.scale(scaling, scaling);
+        repaint();
+
+
+    }
+
+
+    private static int i = 0;
+    private static int j = 0;
+    public void ZoomIn(){
+        double prethodni = scaling;
+        double sadasnji = scaling*scalingFactor;
+        scaling = sadasnji/prethodni;
+
+
+
+        if(scaling > 5){
+            scaling = 5;
+            i++;
+        }
+        System.out.println(scaling + "    zoom in");
+        if(scaling < 5){
+            setTransform();
+            i = 0;
+        }else if(scaling == 5 && i == 1){
+            setTransform();
+        }
+    }
+
+    public void ZoomOut(){
+        double prethodni = scaling;
+        double sadasnji = scaling/scalingFactor;
+        scaling = sadasnji/prethodni;
+
+
+
+        if(scaling < 0.2){
+            scaling = 0.2;
+            j++;
+        }
+
+        System.out.println(scaling + "    zoom out");
+        if(scaling > 0.2){
+            setTransform();
+            j = 0;
+        }else if(scaling == 0.2 && j == 1){
+            setTransform();
+        }
+    }
+
+
 
 
 }
